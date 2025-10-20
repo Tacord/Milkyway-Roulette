@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://c41qlmctf1rr6"]
+
+[ext_resource type="Script" uid="uid://bttubg1g7in3k" path="res://scripts/pentagon.gd" id="1_nsxuo"]
+[ext_resource type="Texture2D" uid="uid://b07ljly23fqn3" path="res://assets/pentagon.png" id="2_mgpic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nsxuo"]
+radius = 90.0
+
+[node name="Pentagon" type="Area2D"]
+script = ExtResource("1_nsxuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_mgpic")
+
+[node name="BasicAttackTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="HeavyAttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_nsxuo")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="HeavyAttackCooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="BasicAttackTimer" to="." method="_on_basic_attack_timer_timeout"]
+[connection signal="timeout" from="HeavyAttackTimer" to="." method="_on_heavy_attack_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="HeavyAttackCooldown" to="." method="_on_heavy_attack_cooldown_timeout"]

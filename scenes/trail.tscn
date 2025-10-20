@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxsrcke60ijsh"]
+
+[ext_resource type="Script" uid="uid://bd15oyyy1ev7x" path="res://scripts/trail.gd" id="1_rsj4o"]
+
+[sub_resource type="Curve" id="Curve_rsj4o"]
+_limits = [-0.14606738, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0044184923), 0.0, 1.9660956, 0, 1, Vector2(0.5108696, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.034212947), -1.9744983, 0.0, 1, 0]
+point_count = 3
+
+[node name="Trail" type="Line2D"]
+scale = Vector2(2, 2)
+points = PackedVector2Array(15.5, 10, -20, -20, -90.5, 1)
+width_curve = SubResource("Curve_rsj4o")
+joint_mode = 2
+script = ExtResource("1_rsj4o")

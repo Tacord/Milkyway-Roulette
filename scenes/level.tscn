@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://cht4bf80llfn7"]
+
+[ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="3_mx8sn"]
+[ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="4_mx8sn"]
+[ext_resource type="Shader" uid="uid://ctwuev7ro07" path="res://scripts/reflective.gdshader" id="5_2r41h"]
+[ext_resource type="Script" uid="uid://b6u2323l0oeoo" path="res://scripts/reflective.gd" id="6_klq6b"]
+[ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="8_b121j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
+size = Vector2(127, 127)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2r41h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_klq6b"]
+noise = SubResource("FastNoiseLite_2r41h")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b121j"]
+shader = ExtResource("5_2r41h")
+shader_parameter/CAST_COLOR = Color(0, 0, 0, 1)
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_klq6b")
+shader_parameter/speed = Vector2(0, 0)
+shader_parameter/wave_strength = 0.0
+shader_parameter/scale_y = 700.0
+shader_parameter/y_zoom = 0.82644624
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8c41q"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_w7c3h")]
+z_index = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 200)
+scale = Vector2(10, 0.055)
+collision_mask = 255
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -63.8
+offset_top = -64.0
+offset_right = 63.100002
+offset_bottom = 63.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_mx8sn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(200, 0)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1000, 0)
+scale = Vector2(1.245, 1.245)
+texture = ExtResource("3_w8frs")
+
+[node name="Pentagon" parent="." instance=ExtResource("3_mx8sn")]
+z_index = 2
+position = Vector2(-60, -30)
+
+[node name="Trail" parent="." instance=ExtResource("4_mx8sn")]
+scale = Vector2(1, 1)
+default_color = Color(0.38431373, 0.57254905, 0.61960787, 1)
+
+[node name="Reflection" type="Node2D" parent="."]
+
+[node name="Reflective" type="Sprite2D" parent="Reflection"]
+z_index = 10
+material = SubResource("ShaderMaterial_b121j")
+position = Vector2(-6.9999847, 367)
+scale = Vector2(1270, 334.0001)
+texture = SubResource("CanvasTexture_8c41q")
+script = ExtResource("6_klq6b")
+
+[node name="ColorRect" type="ColorRect" parent="Reflection"]
+z_index = 11
+offset_left = -640.0
+offset_top = 200.0
+offset_right = 630.0
+offset_bottom = 530.0
+color = Color(0, 0, 0, 0.6392157)
+
+[node name="EnemyPawn" parent="." instance=ExtResource("7_klq6b")]
+position = Vector2(100.74, 143.94)
+
+[node name="EnemyPawn2" parent="." instance=ExtResource("7_klq6b")]
+position = Vector2(-300.74, 143.94)
+
+[node name="EnemyPawn3" parent="." instance=ExtResource("7_klq6b")]
+position = Vector2(-400, 143.94)
+
+[node name="EnemyKnight" parent="." instance=ExtResource("8_b121j")]
+position = Vector2(500, 0)
