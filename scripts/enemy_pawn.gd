@@ -53,7 +53,7 @@ func damage(damage: float, knockback : float):
 		await $DeathAnimation.animation_finished
 		queue_free()
 	# 3.1 knockback = footstool
-	if damage == 5.01:
+	if damage == 20.01:
 		$FootstoolAnimation.play("footstool")
 	else:
 		$HurtAnimation.play("hurt")

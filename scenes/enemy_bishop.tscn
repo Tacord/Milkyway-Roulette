@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cnnfkh0rtsgcs"]
+[gd_scene load_steps=23 format=3 uid="uid://dxwqm52ub5u0x"]
 
-[ext_resource type="Script" uid="uid://csyv4bxq0em5k" path="res://scripts/enemy_knight.gd" id="1_s5n55"]
-[ext_resource type="Texture2D" uid="uid://ckswlg6yv3wvi" path="res://assets/corrupted knightcharacter.png" id="2_xyjps"]
-[ext_resource type="Texture2D" uid="uid://dm1waa8v5ised" path="res://assets/enemyhealthempty.png" id="3_kinlx"]
-[ext_resource type="Texture2D" uid="uid://cb4j80up7t5s5" path="res://assets/enemyhealthfull.png" id="4_wpci7"]
+[ext_resource type="Script" uid="uid://2ketrmc20rh" path="res://scripts/enemy_bishop.gd" id="1_kkife"]
+[ext_resource type="Texture2D" uid="uid://b4hq2yivtqxan" path="res://assets/corrupted bishopcharacter.png" id="1_re7cs"]
+[ext_resource type="Texture2D" uid="uid://dm1waa8v5ised" path="res://assets/enemyhealthempty.png" id="2_kkife"]
+[ext_resource type="Texture2D" uid="uid://cb4j80up7t5s5" path="res://assets/enemyhealthfull.png" id="3_uppf1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbncm"]
 radius = 16.0
@@ -240,18 +240,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 3.141592653589793, 6.283185307179586]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Hurtbox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.3),
-"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(80, 0), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_bxt6w"]
 resource_name = "attack_left"
@@ -279,18 +267,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(2.143547, 0.5176324, 1),
 "update": 0,
 "values": [0.0, -3.141592653589793, -6.283185307179586]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Hurtbox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.3),
-"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-80, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxt6w"]
@@ -385,20 +361,16 @@ _data = {
 &"footstool": SubResource("Animation_lbalf")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r47x2"]
-radius = 22.307693
-height = 44.615387
-
-[node name="EnemyKnight" type="CharacterBody2D" groups=["Goon"]]
+[node name="EnemyBishop" type="CharacterBody2D" groups=["Goon"]]
 scale = Vector2(1.3, 1.3)
-script = ExtResource("1_s5n55")
+script = ExtResource("1_kkife")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -6.2831855
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_xyjps")
+texture = ExtResource("1_re7cs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_cbncm")
 
 [node name="UpdatePositionTimer" type="Timer" parent="."]
@@ -410,7 +382,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_dqkch")
 }
 playback_default_blend_time = 0.5
-speed_scale = 0.3
+speed_scale = 0.2
 
 [node name="DeathAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../WalkAnimation")
@@ -442,14 +414,11 @@ offset_right = 475.0
 offset_bottom = 40.999996
 scale = Vector2(0.1, 0.1)
 value = 50.0
-texture_under = ExtResource("3_kinlx")
-texture_progress = ExtResource("4_wpci7")
+texture_under = ExtResource("2_kkife")
+texture_progress = ExtResource("3_uppf1")
 
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(1.5384617, 10.000001)
-shape = SubResource("CapsuleShape2D_r47x2")
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="UpdatePositionTimer" to="." method="_on_update_position_timer_timeout"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

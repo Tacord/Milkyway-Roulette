@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="4_mx8sn"]
 [ext_resource type="Shader" uid="uid://ctwuev7ro07" path="res://scripts/reflective.gdshader" id="5_2r41h"]
 [ext_resource type="Script" uid="uid://b6u2323l0oeoo" path="res://scripts/reflective.gd" id="6_klq6b"]
-[ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="8_b121j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
@@ -25,7 +25,7 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_klq6b")
 shader_parameter/speed = Vector2(0, 0)
 shader_parameter/wave_strength = 0.0
 shader_parameter/scale_y = 700.0
-shader_parameter/y_zoom = 0.82644624
+shader_parameter/y_zoom = 1.21
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8c41q"]
 
@@ -33,6 +33,7 @@ shader_parameter/y_zoom = 0.82644624
 
 [node name="Player" parent="." instance=ExtResource("1_w7c3h")]
 z_index = 1
+position = Vector2(-140.145, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 200)
@@ -86,14 +87,11 @@ offset_right = 630.0
 offset_bottom = 530.0
 color = Color(0, 0, 0, 0.6392157)
 
-[node name="EnemyPawn" parent="." instance=ExtResource("7_klq6b")]
-position = Vector2(100.74, 143.94)
-
-[node name="EnemyPawn2" parent="." instance=ExtResource("7_klq6b")]
-position = Vector2(-300.74, 141.94)
-
-[node name="EnemyPawn3" parent="." instance=ExtResource("7_klq6b")]
-position = Vector2(-400, 143.94)
-
 [node name="EnemyKnight" parent="." instance=ExtResource("8_b121j")]
-position = Vector2(500, 0)
+position = Vector2(137, 130)
+
+[node name="EnemyBishop" parent="." instance=ExtResource("7_klq6b")]
+position = Vector2(250, 128)
+
+[node name="EnemyBishop2" parent="." instance=ExtResource("7_klq6b")]
+position = Vector2(362, 130)

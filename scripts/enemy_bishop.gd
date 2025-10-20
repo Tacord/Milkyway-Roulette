@@ -2,14 +2,20 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 
-const SPEED : float = 170.0
-const jump_velocity : float = -550.0
-const GRAVITY : float = 1000.0
+const SPEED : float = 50.0
+const JUMP_VELOCITY : float = -400.0
+const GRAVITY : float = 900.0
 var targetting : bool = false
 var direction_to_player : float
 var direction_x : float
 var health : float = 100
 var facing : String = "left"
+var retreat : bool = false
+var cooldown : bool = false
+const projectile = preload("res://scenes/bishop_projectile.tscn")
+
+func _ready():
+	pass
 
 func _physics_process(delta: float) -> void:
 	
@@ -24,27 +30,32 @@ func _physics_process(delta: float) -> void:
 			direction_x = 1
 		elif direction_to_player < 0:
 			direction_x = -1
-		velocity.x = direction_x * SPEED
+		if retreat:
+			velocity.x = direction_x * -SPEED
+		else:
+			velocity.x = direction_x * SPEED
 	else:
 		$WalkAnimation.stop()
 		velocity.x = lerp(velocity.x, 0.0, 0.1) # thanks gemini
 	move_and_slide()
 
 func _on_update_position_timer_timeout() -> void:
-	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100
-	if abs(player.global_position.x - global_position.x) < 270 and is_on_floor() and abs(player.global_position.x - global_position.x) >= 100:
-		velocity.y = jump_velocity
-	if abs(player.global_position.x - global_position.x) < 100 and is_on_floor():
+	targetting = abs(player.global_position.x - global_position.x) < 700 and abs(player.global_position.x - global_position.x) > 500 or abs(player.global_position.x - global_position.x) < 200
+	if abs(player.global_position.x - global_position.x) < 200:
+		retreat = true
+	elif abs(player.global_position.x - global_position.x) < 500 and not cooldown:
+		cooldown = true
+		$AttackCooldown.start()
+		retreat = false
+		var instance = projectile.instantiate()
 		if direction_to_player > 0:
 			$AttackAnimation.play("attack")
+			instance.direction = -1
+			add_child(instance)
 		else:
 			$AttackAnimation.play("attack_left")
-	if abs(player.global_position.x - global_position.x) < 50 and abs(player.global_position.y - global_position.y) < 100:
-		if direction_to_player > 0:
-			velocity.x = -1000
-		else:
-			velocity.x = 1000
-		velocity.y = -300
+			instance.direction = 1
+			add_child(instance)
 
 func damage(damage: float, knockback : float):
 	direction_to_player = player.global_position.x - global_position.x
@@ -71,4 +82,8 @@ func damage(damage: float, knockback : float):
 
 func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("Player"):
-		body.damage(15, 5, direction_to_player)
+		body.damage(10, 1, direction_to_player)
+
+
+func _on_attack_cooldown_timeout() -> void:
+	cooldown = false

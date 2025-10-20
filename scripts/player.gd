@@ -116,7 +116,7 @@ func _on_immunity_timer_timeout() -> void:
 func _on_footstool_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("Goon"):
 		if footstoolcount < 4:
-			body.damage(5.01, 3.1 * footstoolcount)
+			body.damage(20.01, 3.1 * footstoolcount)
 			velocity.y = jump_velocity / footstoolcount
 			footstoolcount += 1
 			body.velocity.y += 500
