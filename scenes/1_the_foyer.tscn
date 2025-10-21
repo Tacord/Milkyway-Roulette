@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://blft2ylnsqe0f"]
+
+[ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_rq34v"]
+[ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="2_inlc7"]
+[ext_resource type="PackedScene" uid="uid://xfr7hv53kx8e" path="res://scenes/box_2x_1.tscn" id="2_uwhrt"]
+[ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="3_inlc7"]
+[ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="4_n0jno"]
+[ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="5_newo8"]
+[ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_klysq"]
+
+[node name="1 The Foyer" type="Node2D"]
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Surface" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-701, 73)
+scale = Vector2(60.77, 1)
+
+[node name="Surface4" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(353.655, -8.525)
+scale = Vector2(44.69, 1)
+
+[node name="Surface6" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-504.42, -455)
+scale = Vector2(35.25, 1)
+
+[node name="Surface7" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-504, -371)
+scale = Vector2(35.215, 1)
+
+[node name="Surface10" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(447.635, -900)
+scale = Vector2(35.25, 1)
+
+[node name="Surface11" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(447.635, -816)
+scale = Vector2(35.215, 1)
+
+[node name="Surface8" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-161.00003, -421)
+rotation = 1.5707964
+scale = Vector2(4.22, 1)
+
+[node name="Surface12" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(91, -865)
+rotation = 1.5707964
+scale = Vector2(4.22, 1)
+
+[node name="Surface2" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-1081, -119)
+scale = Vector2(22.755, 1)
+
+[node name="Surface3" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-862, -738.28)
+rotation = 1.5707964
+scale = Vector2(61.4, 1)
+
+[node name="Surface5" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-103, 25.12)
+rotation = 1.5707964
+scale = Vector2(4.325, 1)
+
+[node name="Surface9" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(790, -465.42)
+rotation = 1.5707964
+scale = Vector2(44.57, 1)
+
+[node name="Box2x1" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(179, -309)
+
+[node name="Box2x3" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(409.00003, -252)
+
+[node name="Box2x2" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-49, -366)
+
+[node name="Box2x4" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-190, -711)
+
+[node name="Box2x6" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-842.00006, -987)
+
+[node name="Box2x5" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-429, -663)
+
+[node name="Player" parent="." instance=ExtResource("1_rq34v")]
+z_index = 1
+position = Vector2(-1000, -1)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(200, 0)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1000, 0)
+scale = Vector2(1.245, 30.8)
+texture = ExtResource("3_inlc7")
+
+[node name="Trail" parent="." instance=ExtResource("5_newo8")]
+scale = Vector2(1, 1)
+default_color = Color(0.38431373, 0.57254905, 0.61960787, 1)
+
+[node name="Pentagon" parent="." instance=ExtResource("4_n0jno")]
+z_index = 2
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyPawn" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(-263, 23)
+
+[node name="EnemyPawn2" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(14, -65)
+
+[node name="EnemyPawn3" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(-388, 21)
+
+[node name="EnemyPawn4" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(-772, -526)
+
+[node name="EnemyPawn5" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(-689, -526)

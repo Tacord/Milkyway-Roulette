@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_update_position_timer_timeout() -> void:
-	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100
+	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100 and abs(player.global_position.y - global_position.y) < 300
 	if abs(player.global_position.x - global_position.x) < 100:
 		if direction_to_player > 0:
 			$AttackAnimation.play("attack")
