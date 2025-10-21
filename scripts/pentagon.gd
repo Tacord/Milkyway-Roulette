@@ -7,6 +7,8 @@ extends Area2D
 @onready var heavycooldowntimer = $HeavyAttackCooldown
 @onready var heavyattacktimer = $HeavyAttackTimer
 @onready var basicattacktimer = $BasicAttackTimer
+@onready var heavyparticle = $HeavyParticle
+@onready var basicparticle = $BasicParticle
 
 var speed: float = 20
 var offset: Vector2 = Vector2(60, 15)
@@ -54,6 +56,7 @@ func _process(delta: float) -> void:
 		position = position.lerp(attacktargetposition, speed * delta)
 
 func heavy_attack():
+	heavyparticle.emitting = true
 	player.energy -= 50
 	attacking = "heavy"
 	trail.show()
@@ -103,6 +106,7 @@ func heavy_attack():
 		combo = 0
 
 func basic_attack():
+	basicparticle.emitting = true
 	attacking = "basic"
 	player.basicanimation.play("basic")
 	trail.maxlength = 0.04 * Engine.get_frames_per_second()

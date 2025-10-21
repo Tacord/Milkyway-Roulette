@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c41qlmctf1rr6"]
+[gd_scene load_steps=5 format=3 uid="uid://c41qlmctf1rr6"]
 
 [ext_resource type="Script" uid="uid://bttubg1g7in3k" path="res://scripts/pentagon.gd" id="1_nsxuo"]
 [ext_resource type="Texture2D" uid="uid://b07ljly23fqn3" path="res://assets/pentagon.png" id="2_mgpic"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsxuo"]
 radius = 90.0
+
+[sub_resource type="Gradient" id="Gradient_nsxuo"]
+offsets = PackedFloat32Array(0, 0.65068495, 1)
+colors = PackedColorArray(0.38431373, 0.57254905, 0.61960787, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Pentagon" type="Area2D"]
 script = ExtResource("1_nsxuo")
@@ -34,8 +38,36 @@ wait_time = 0.7
 one_shot = true
 
 [node name="HeavyAttackCooldown" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.5
 one_shot = true
+
+[node name="HeavyParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.75
+one_shot = true
+speed_scale = 1.5
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.15
+initial_velocity_max = 26.8
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_nsxuo")
+
+[node name="BasicParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.75
+one_shot = true
+speed_scale = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.15
+initial_velocity_max = 26.8
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_nsxuo")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

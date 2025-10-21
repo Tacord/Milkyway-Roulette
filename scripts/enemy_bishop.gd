@@ -8,7 +8,7 @@ const GRAVITY : float = 900.0
 var targetting : bool = false
 var direction_to_player : float
 var direction_x : float
-var health : float = 100
+var health : float = 75
 var facing : String = "left"
 var retreat : bool = false
 var cooldown : bool = false
@@ -71,7 +71,7 @@ func damage(damage: float, knockback : float):
 		$DeathAnimation.play("death")
 		await $DeathAnimation.animation_finished
 		queue_free()
-	# 3.1 knockback = footstool
+	# 20.1 knockback = footstool (im so smart)
 	if damage == 20.01:
 		$FootstoolAnimation.play("footstool")
 	else:

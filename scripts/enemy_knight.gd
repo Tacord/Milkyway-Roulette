@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player = $"../Player"
 
 const SPEED : float = 170.0
-const jump_velocity : float = -550.0
+const jump_velocity : float = -450.0
 const GRAVITY : float = 1000.0
 var targetting : bool = false
 var direction_to_player : float
@@ -60,7 +60,7 @@ func damage(damage: float, knockback : float):
 		$DeathAnimation.play("death")
 		await $DeathAnimation.animation_finished
 		queue_free()
-	# 3.1 knockback = footstool
+	# 20.1 knockback = footstool (im so smart)
 	if damage == 20.01:
 		$FootstoolAnimation.play("footstool")
 	else:

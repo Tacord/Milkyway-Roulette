@@ -31,3 +31,6 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 		body.damage(10, 2, -direction)
 		$Destroy.play("destroy")
 		queue_free()
+
+func _on_expire_timer_timeout() -> void:
+	damage(1,1)
