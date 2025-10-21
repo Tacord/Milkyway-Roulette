@@ -51,11 +51,13 @@ func _on_update_position_timer_timeout() -> void:
 		if direction_to_player > 0:
 			$AttackAnimation.play("attack")
 			instance.direction = -1
-			add_child(instance)
+			get_tree().root.add_child(instance)
+			instance.global_position = global_position
 		else:
 			$AttackAnimation.play("attack_left")
 			instance.direction = 1
-			add_child(instance)
+			get_tree().root.add_child(instance)
+			instance.global_position = global_position
 
 func damage(damage: float, knockback : float):
 	direction_to_player = player.global_position.x - global_position.x

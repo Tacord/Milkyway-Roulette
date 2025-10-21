@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 		combotimer.start() # to reset the timer
 		basic_attack()
 	
-	if Input.is_action_just_pressed("x") and not cooldown and player.energy >= 50:
+	if Input.is_action_pressed("x") and not cooldown and player.energy >= 50:
 		if heavycooldowntimer.is_stopped():
 			heavycooldowntimer.start()
 		cooldown = true

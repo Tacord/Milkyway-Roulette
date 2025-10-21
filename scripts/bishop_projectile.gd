@@ -20,13 +20,14 @@ func _process(delta: float) -> void:
 	position.y += y_offset * delta
 
 func damage(damage: float, knockback : float):
-	$CollisionShape2D.queue_free()
-	$Destroy.play("destroy")
-	await $Destroy.animation_finished
-	queue_free()
+	if is_instance_valid($CollisionShape2D):
+		$CollisionShape2D.queue_free()
+		$Destroy.play("destroy")
+		await $Destroy.animation_finished
+		queue_free()
 
 func _on_body_entered(body: CharacterBody2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and is_instance_valid($CollisionShape2D):
 		$CollisionShape2D.queue_free()
 		body.damage(10, 2, -direction)
 		$Destroy.play("destroy")

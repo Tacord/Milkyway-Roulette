@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var attackanimation : AnimationPlayer = $AttackAnimation
 @onready var heavyanimation : AnimationPlayer = $HeavyAnimation
 @onready var basicanimation : AnimationPlayer = $BasicAnimation
+@onready var hurtanimation : AnimationPlayer = $HurtAnimation
 @onready var jumpbuffertimer : Timer = $JumpBuffer
 @onready var coyotetimetimer : Timer = $CoyoteTime
 @onready var attacktimer : Timer = $AttackTimer
@@ -18,6 +19,7 @@ extends CharacterBody2D
 @onready var pentagon : Node2D = $"../Pentagon"
 @onready var dummypentagon : Node2D = $DummyPentagon
 @onready var healthbar : TextureProgressBar = $CanvasLayer/HealthBar
+@onready var healthbarsmoothed : TextureProgressBar = $CanvasLayer/HealthBarSmooth
 @onready var energybar : TextureProgressBar = $CanvasLayer/EnergyBar
 
 var gravity : int = 2000
@@ -40,6 +42,12 @@ func _physics_process(delta):
 	else:
 		energy = 100
 	energybar.value = energy
+	if healthbarsmoothed.value > health:
+		print(healthbarsmoothed.value)
+		print(delta)
+		healthbarsmoothed.value -= 10 * delta
+	if healthbarsmoothed.value < health:
+		healthbarsmoothed.value = health
 	healthbar.value = health
 	
 	if wasonfloor and not coyotetimestarted and not is_on_floor():
@@ -48,7 +56,7 @@ func _physics_process(delta):
 		coyotetime = true
 	
 	if Input.is_action_pressed("z"):
-		speed = 100
+		speed = 75
 	else:
 		speed = 300
 	
@@ -99,6 +107,7 @@ func _on_attack_timer_timeout() -> void:
 
 func damage(damage : float, knockback : float, facing : float):
 	if immunity == false:
+		hurtanimation.play("hurt")
 		immunitytimer.start()
 		immunity = true
 		health -= damage
