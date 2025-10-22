@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blft2ylnsqe0f"]
+[gd_scene load_steps=9 format=3 uid="uid://blft2ylnsqe0f"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_rq34v"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="2_inlc7"]
@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="4_n0jno"]
 [ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="5_newo8"]
 [ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_klysq"]
+[ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="8_ghrvd"]
 
 [node name="1 The Foyer" type="Node2D"]
 
 [node name="Objects" type="Node2D" parent="."]
+z_index = 10
 
 [node name="Surface" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(-701, 73)
@@ -19,6 +21,10 @@ scale = Vector2(60.77, 1)
 [node name="Surface4" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(353.655, -8.525)
 scale = Vector2(44.69, 1)
+
+[node name="Surface9" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(576.805, -1507)
+scale = Vector2(143.425, 1)
 
 [node name="Surface6" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(-504.42, -455)
@@ -29,20 +35,70 @@ position = Vector2(-504, -371)
 scale = Vector2(35.215, 1)
 
 [node name="Surface10" parent="Objects" instance=ExtResource("2_inlc7")]
-position = Vector2(447.635, -900)
-scale = Vector2(35.25, 1)
+position = Vector2(870, -900)
+scale = Vector2(76.91, 1)
 
 [node name="Surface11" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(447.635, -816)
 scale = Vector2(35.215, 1)
+
+[node name="Surface13" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(1291, -816)
+scale = Vector2(35.215, 1)
+
+[node name="Surface19" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(2360, -400)
+scale = Vector2(35.215, 1)
+
+[node name="Surface22" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(3058, -1498)
+scale = Vector2(35.215, 1)
+
+[node name="Surface23" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(3234, -1128)
+scale = Vector2(17.3, 1)
+
+[node name="Surface17" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(2000, -4)
+scale = Vector2(106.125, 1)
 
 [node name="Surface8" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(-161.00003, -421)
 rotation = 1.5707964
 scale = Vector2(4.22, 1)
 
+[node name="Surface15" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(931, -418)
+rotation = 1.5707964
+scale = Vector2(40.73, 1)
+
+[node name="Surface18" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(2001, -956)
+rotation = 1.5707964
+scale = Vector2(54.99, 1.35)
+
+[node name="Surface21" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(2700, -956)
+rotation = 1.5707964
+scale = Vector2(54.99, 1.35)
+
+[node name="Surface20" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(3054.75, -571.835)
+rotation = 1.5707964
+scale = Vector2(56.45, 1)
+
+[node name="Surface16" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(793, -418)
+rotation = 1.5707964
+scale = Vector2(40.73, 1)
+
 [node name="Surface12" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(91, -865)
+rotation = 1.5707964
+scale = Vector2(4.22, 1)
+
+[node name="Surface14" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(1632, -865)
 rotation = 1.5707964
 scale = Vector2(4.22, 1)
 
@@ -51,41 +107,117 @@ position = Vector2(-1081, -119)
 scale = Vector2(22.755, 1)
 
 [node name="Surface3" parent="Objects" instance=ExtResource("2_inlc7")]
-position = Vector2(-862, -738.28)
+position = Vector2(-862, -817.7)
 rotation = 1.5707964
-scale = Vector2(61.4, 1)
+scale = Vector2(69.475, 1)
 
 [node name="Surface5" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(-103, 25.12)
 rotation = 1.5707964
 scale = Vector2(4.325, 1)
 
-[node name="Surface9" parent="Objects" instance=ExtResource("2_inlc7")]
-position = Vector2(790, -465.42)
-rotation = 1.5707964
-scale = Vector2(44.57, 1)
-
 [node name="Box2x1" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(179, -309)
+position = Vector2(150, -309)
 
 [node name="Box2x3" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(409.00003, -252)
+position = Vector2(380.00003, -252)
 
 [node name="Box2x2" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(-49, -366)
+position = Vector2(-78, -366)
 
 [node name="Box2x4" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(-190, -711)
+position = Vector2(-399.00003, -744)
+
+[node name="Box2x16" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-116, -817)
 
 [node name="Box2x6" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(-842.00006, -987)
+position = Vector2(-842.00006, -1096)
 
-[node name="Box2x5" parent="Objects" instance=ExtResource("2_uwhrt")]
-position = Vector2(-429, -663)
+[node name="Box2x17" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(-687, -666)
+
+[node name="Box2x7" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(1873, -642)
+
+[node name="Box2x10" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2925, -136)
+
+[node name="Box2x11" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2926, -239)
+
+[node name="Box2x12" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2925, -474)
+
+[node name="Box2x13" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2723, -577)
+
+[node name="Box2x14" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2924, -827)
+
+[node name="Box2x15" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(2721, -930)
+
+[node name="Box2x8" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(1686.0001, -536)
+
+[node name="Box2x9" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(1486, -434)
+
+[node name="Box2x18" parent="Objects" instance=ExtResource("2_uwhrt")]
+position = Vector2(1294, -321)
+
+[node name="CoverBox" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -1310.0
+offset_top = 68.0
+offset_right = -87.0
+offset_bottom = 524.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox2" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -92.0
+offset_top = -12.0
+offset_right = 3421.0
+offset_bottom = 524.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox3" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = 3065.0
+offset_top = -1134.0
+offset_right = 3421.0
+offset_bottom = 524.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox4" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = 2016.0
+offset_top = -1516.0
+offset_right = 2707.0
+offset_bottom = -414.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox5" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -2061.0
+offset_top = -1516.0
+offset_right = -857.0
+offset_bottom = -130.0
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox6" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -2061.0
+offset_top = -2155.0
+offset_right = 3422.0
+offset_bottom = -1510.0
+color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_rq34v")]
 z_index = 1
-position = Vector2(-1000, -1)
+position = Vector2(-1254, 0)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -105,8 +237,6 @@ default_color = Color(0.38431373, 0.57254905, 0.61960787, 1)
 [node name="Pentagon" parent="." instance=ExtResource("4_n0jno")]
 z_index = 2
 
-[node name="Enemies" type="Node2D" parent="."]
-
 [node name="EnemyPawn" parent="." instance=ExtResource("7_klysq")]
 position = Vector2(-263, 23)
 
@@ -121,3 +251,30 @@ position = Vector2(-772, -526)
 
 [node name="EnemyPawn5" parent="." instance=ExtResource("7_klysq")]
 position = Vector2(-689, -526)
+
+[node name="EnemyKnight" parent="." instance=ExtResource("8_ghrvd")]
+position = Vector2(953, -969.00006)
+
+[node name="EnemyKnight2" parent="." instance=ExtResource("8_ghrvd")]
+position = Vector2(1432, -82)
+
+[node name="EnemyKnight3" parent="." instance=ExtResource("8_ghrvd")]
+position = Vector2(2961, -296.00003)
+
+[node name="EnemyPawn6" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(1341, -963)
+
+[node name="EnemyPawn7" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(1462, -963)
+
+[node name="EnemyPawn8" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(2890, -58)
+
+[node name="EnemyPawn9" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(2737, -58)
+
+[node name="EnemyPawn10" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(2574, -60)
+
+[node name="EnemyPawn11" parent="." instance=ExtResource("7_klysq")]
+position = Vector2(1306, -76)

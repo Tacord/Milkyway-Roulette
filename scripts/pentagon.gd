@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 		position = position.lerp(attacktargetposition, speed * delta)
 
 func heavy_attack():
+	player.camerashake.play("heavy")
 	heavyparticle.emitting = true
 	player.energy -= 50
 	attacking = "heavy"
@@ -106,6 +107,7 @@ func heavy_attack():
 		combo = 0
 
 func basic_attack():
+	player.camerashake.play("basic")
 	basicparticle.emitting = true
 	attacking = "basic"
 	player.basicanimation.play("basic")

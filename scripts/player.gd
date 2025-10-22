@@ -12,12 +12,13 @@ extends CharacterBody2D
 @onready var heavyanimation : AnimationPlayer = $HeavyAnimation
 @onready var basicanimation : AnimationPlayer = $BasicAnimation
 @onready var hurtanimation : AnimationPlayer = $HurtAnimation
+@onready var camerashake : AnimationPlayer = $CameraShake
+
 @onready var jumpbuffertimer : Timer = $JumpBuffer
 @onready var coyotetimetimer : Timer = $CoyoteTime
 @onready var attacktimer : Timer = $AttackTimer
 @onready var immunitytimer : Timer = $ImmunityTimer
 @onready var pentagon : Node2D = $"../Pentagon"
-@onready var dummypentagon : Node2D = $DummyPentagon
 @onready var healthbar : TextureProgressBar = $CanvasLayer/HealthBar
 @onready var healthbarsmoothed : TextureProgressBar = $CanvasLayer/HealthBarSmooth
 @onready var energybar : TextureProgressBar = $CanvasLayer/EnergyBar
@@ -37,8 +38,9 @@ var immunity : bool = false
 var footstoolcount : int = 1
 
 func _physics_process(delta):
+	
 	if energy < 100:
-		energy += 20 * delta
+		energy += 25 * delta
 	else:
 		energy = 100
 	energybar.value = energy
@@ -61,7 +63,10 @@ func _physics_process(delta):
 		speed = 300
 	
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if pentagon.attacking == "basic":
+			velocity.y = velocity.y/2
+		else:
+			velocity.y += gravity * delta
 		ismoving = false
 		if wasonfloor == true:
 			wasonfloor = false

@@ -1,34 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cht4bf80llfn7"]
+[gd_scene load_steps=10 format=3 uid="uid://cht4bf80llfn7"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="3_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="4_mx8sn"]
-[ext_resource type="Shader" uid="uid://ctwuev7ro07" path="res://scripts/reflective.gdshader" id="5_2r41h"]
-[ext_resource type="Script" uid="uid://b6u2323l0oeoo" path="res://scripts/reflective.gd" id="6_klq6b"]
+[ext_resource type="PackedScene" uid="uid://k7qu2rbe4tr8" path="res://scenes/reflection.tscn" id="5_b121j"]
 [ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="9_8c41q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
 size = Vector2(127, 127)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2r41h"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_klq6b"]
-noise = SubResource("FastNoiseLite_2r41h")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b121j"]
-shader = ExtResource("5_2r41h")
-shader_parameter/CAST_COLOR = Color(0, 0, 0, 1)
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_klq6b")
-shader_parameter/speed = Vector2(0, 0)
-shader_parameter/wave_strength = 0.0
-shader_parameter/scale_y = 700.0
-shader_parameter/y_zoom = 0.6830134
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8c41q"]
 
 [node name="Level" type="Node2D"]
 
@@ -70,23 +52,7 @@ position = Vector2(-60, -30)
 scale = Vector2(1, 1)
 default_color = Color(0.38431373, 0.57254905, 0.61960787, 1)
 
-[node name="Reflection" type="Node2D" parent="."]
-
-[node name="Reflective" type="Sprite2D" parent="Reflection"]
-z_index = 10
-material = SubResource("ShaderMaterial_b121j")
-position = Vector2(-6.9999847, 367)
-scale = Vector2(1270, 334.0001)
-texture = SubResource("CanvasTexture_8c41q")
-script = ExtResource("6_klq6b")
-
-[node name="ColorRect" type="ColorRect" parent="Reflection"]
-z_index = 11
-offset_left = -640.0
-offset_top = 200.0
-offset_right = 630.0
-offset_bottom = 530.0
-color = Color(0, 0, 0, 0.6392157)
+[node name="Reflection" parent="." instance=ExtResource("5_b121j")]
 
 [node name="EnemyKnight" parent="." instance=ExtResource("8_b121j")]
 position = Vector2(137, 130)
@@ -101,4 +67,4 @@ position = Vector2(362, 130)
 position = Vector2(-348, 132)
 
 [node name="EnemyPawn2" parent="." instance=ExtResource("9_8c41q")]
-position = Vector2(-442, 132)
+position = Vector2(-443, 132)
