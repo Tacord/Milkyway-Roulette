@@ -36,6 +36,7 @@ var health : float = 100.0
 var energy : float = 100.0
 var immunity : bool = false
 var footstoolcount : int = 1
+var prevpos : Vector2 = Vector2(0,0)
 
 func _physics_process(delta):
 	
@@ -45,8 +46,6 @@ func _physics_process(delta):
 		energy = 100
 	energybar.value = energy
 	if healthbarsmoothed.value > health:
-		print(healthbarsmoothed.value)
-		print(delta)
 		healthbarsmoothed.value -= 10 * delta
 	if healthbarsmoothed.value < health:
 		healthbarsmoothed.value = health
@@ -64,7 +63,8 @@ func _physics_process(delta):
 	
 	if not is_on_floor():
 		if pentagon.attacking == "basic":
-			velocity.y = velocity.y/2
+			velocity.y = velocity.y/1.5
+			print(velocity.y)
 		else:
 			velocity.y += gravity * delta
 		ismoving = false
@@ -137,3 +137,7 @@ func _on_footstool_body_entered(body: CharacterBody2D) -> void:
 		else:
 			damage(5,10,1)
 			velocity.y = 1000
+			
+func spikedamaged():
+	damage(20,0,1)
+	position = prevpos

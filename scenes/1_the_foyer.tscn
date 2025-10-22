@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blft2ylnsqe0f"]
+[gd_scene load_steps=12 format=3 uid="uid://blft2ylnsqe0f"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_rq34v"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="2_inlc7"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="5_newo8"]
 [ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_klysq"]
 [ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="8_ghrvd"]
+[ext_resource type="PackedScene" uid="uid://c3xrhkbrv3t5" path="res://scenes/spike.tscn" id="9_6leed"]
+[ext_resource type="PackedScene" uid="uid://ddgyw2smrrak7" path="res://scenes/spike_row.tscn" id="9_wpvhk"]
+[ext_resource type="PackedScene" uid="uid://bncfdi6l33vhe" path="res://scenes/spike_checkpoint.tscn" id="11_xljeo"]
 
 [node name="1 The Foyer" type="Node2D"]
 
@@ -51,12 +54,28 @@ position = Vector2(2360, -400)
 scale = Vector2(35.215, 1)
 
 [node name="Surface22" parent="Objects" instance=ExtResource("2_inlc7")]
-position = Vector2(3058, -1498)
-scale = Vector2(35.215, 1)
+position = Vector2(3060.648, -1498)
+scale = Vector2(35.51, 1)
 
 [node name="Surface23" parent="Objects" instance=ExtResource("2_inlc7")]
-position = Vector2(3234, -1128)
+position = Vector2(3238.645, -1128)
+scale = Vector2(17.71, 1)
+
+[node name="Surface29" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(5484, -1118.67)
 scale = Vector2(17.3, 1)
+
+[node name="Surface26" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(4364.0005, -963)
+scale = Vector2(95.07, 1)
+
+[node name="Surface32" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(4364, -907.925)
+scale = Vector2(95.07, 1)
+
+[node name="Surface27" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(4364.0005, -1791.9998)
+scale = Vector2(95.07, 1)
 
 [node name="Surface17" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(2000, -4)
@@ -86,6 +105,31 @@ scale = Vector2(54.99, 1.35)
 position = Vector2(3054.75, -571.835)
 rotation = 1.5707964
 scale = Vector2(56.45, 1)
+
+[node name="Surface24" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(3405.755, -571.835)
+rotation = 1.5707964
+scale = Vector2(56.45, 1)
+
+[node name="Surface28" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(5307, -560)
+rotation = 1.5707964
+scale = Vector2(56.45, 1)
+
+[node name="Surface30" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(5307, -2360)
+rotation = 1.5707964
+scale = Vector2(56.45, 1)
+
+[node name="Surface31" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(5647, -1690.43)
+rotation = 1.5707964
+scale = Vector2(56.45, 1)
+
+[node name="Surface25" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(3405.755, -1653.265)
+rotation = 1.5707964
+scale = Vector2(14.73, 1)
 
 [node name="Surface16" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(793, -418)
@@ -278,3 +322,39 @@ position = Vector2(2574, -60)
 
 [node name="EnemyPawn11" parent="." instance=ExtResource("7_klysq")]
 position = Vector2(1306, -76)
+
+[node name="SpikeRow" parent="." instance=ExtResource("9_wpvhk")]
+position = Vector2(3662, -994)
+
+[node name="SpikeRow2" parent="." instance=ExtResource("9_wpvhk")]
+position = Vector2(4153.605, -994)
+
+[node name="SpikeRow3" parent="." instance=ExtResource("9_wpvhk")]
+position = Vector2(4651.835, -994)
+
+[node name="SpikeRow4" type="Node2D" parent="."]
+position = Vector2(5151.99, -994)
+
+[node name="Spike" parent="SpikeRow4" instance=ExtResource("9_6leed")]
+
+[node name="Spike2" parent="SpikeRow4" instance=ExtResource("9_6leed")]
+position = Vector2(100, 0)
+
+[node name="Spike3" parent="SpikeRow4" instance=ExtResource("9_6leed")]
+position = Vector2(-100, 0)
+
+[node name="Spike5" parent="SpikeRow4" instance=ExtResource("9_6leed")]
+position = Vector2(-200, 0)
+
+[node name="Box2x1" parent="." instance=ExtResource("2_uwhrt")]
+position = Vector2(3792, -1155)
+
+[node name="Box2x2" parent="." instance=ExtResource("2_uwhrt")]
+position = Vector2(4309, -1209)
+
+[node name="Box2x3" parent="." instance=ExtResource("2_uwhrt")]
+position = Vector2(4793, -1278)
+
+[node name="Spike Checkpoint" parent="." instance=ExtResource("11_xljeo")]
+position = Vector2(3238, -1209)
+scale = Vector2(4.94, 4.94)
