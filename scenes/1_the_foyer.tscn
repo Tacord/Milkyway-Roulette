@@ -257,6 +257,14 @@ offset_right = 2707.0
 offset_bottom = -414.0
 color = Color(0, 0, 0, 1)
 
+[node name="CoverBox8" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -2518.0
+offset_top = -614.0
+offset_right = -1310.0
+offset_bottom = 776.6046
+color = Color(0, 0, 0, 1)
+
 [node name="CoverBox5" type="ColorRect" parent="Objects"]
 z_index = -1
 offset_left = -2061.0
@@ -299,7 +307,7 @@ z_index = 2
 position = Vector2(-263, 23)
 
 [node name="EnemyPawn2" parent="." instance=ExtResource("7_klysq")]
-position = Vector2(14, -65)
+position = Vector2(669, -62)
 
 [node name="EnemyPawn3" parent="." instance=ExtResource("7_klysq")]
 position = Vector2(-388, 21)

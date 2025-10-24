@@ -82,6 +82,34 @@ tracks/5/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_xslfi"]
+resource_name = "Use"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(2.219139, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(2.219139, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1000)]
+}
+
 [sub_resource type="Animation" id="Animation_jmdsd"]
 resource_name = "appear"
 length = 0.3
@@ -186,34 +214,6 @@ tracks/3/keys = {
 "values": [Color(0.8819366, 0.8819366, 0.88193655, 1), Color(0.3764706, 0.3764706, 0.3764706, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_xslfi"]
-resource_name = "Use"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(2.219139, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -1000)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(2.219139, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -1000)]
-}
-
 [sub_resource type="Animation" id="Animation_2fcxx"]
 resource_name = "disappear_2"
 length = 2.0
@@ -275,6 +275,21 @@ _data = {
 &"disappear_2": SubResource("Animation_2fcxx")
 }
 
+[sub_resource type="Animation" id="Animation_rtj8h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_s8m3u"]
 resource_name = "use"
 length = 1.5
@@ -301,21 +316,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(2.7320802, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -1000)]
-}
-
-[sub_resource type="Animation" id="Animation_rtj8h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2fcxx"]

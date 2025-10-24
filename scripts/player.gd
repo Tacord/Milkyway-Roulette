@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var jump_velocity : float = -750.0
 @export var acceleration_rate : float = 5.0
 @export var friction_rate : float  = 3.0
+@export var cam_bound_y_top : float = -10000000
+@export var cam_bound_y_bottom : float = 10000000
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var jumpanimation : AnimationPlayer = $JumpAnimation
@@ -39,6 +41,10 @@ var energy : float = 100.0
 var immunity : bool = false
 var footstoolcount : int = 1
 var prevpos : Vector2 = Vector2(0,0)
+
+func _ready():
+	$Camera2D.limit_top = cam_bound_y_top
+	$Camera2D.limit_bottom = cam_bound_y_bottom
 
 func _physics_process(delta):
 	
