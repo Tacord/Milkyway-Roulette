@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var basicanimation : AnimationPlayer = $BasicAnimation
 @onready var hurtanimation : AnimationPlayer = $HurtAnimation
 @onready var camerashake : AnimationPlayer = $CameraShake
+@onready var cameratransition : AnimationPlayer = $CameraTransition
 
 @onready var jumpbuffertimer : Timer = $JumpBuffer
 @onready var coyotetimetimer : Timer = $CoyoteTime
@@ -23,6 +24,7 @@ extends CharacterBody2D
 @onready var healthbarsmoothed : TextureProgressBar = $CanvasLayer/HealthBarSmooth
 @onready var energybar : TextureProgressBar = $CanvasLayer/EnergyBar
 
+var stopped : bool = false
 var gravity : int = 2000
 var ismoving : bool = false
 var canjump : bool = false
@@ -40,62 +42,67 @@ var prevpos : Vector2 = Vector2(0,0)
 
 func _physics_process(delta):
 	
-	if energy < 100:
-		energy += 25 * delta
-	else:
-		energy = 100
-	energybar.value = energy
-	if healthbarsmoothed.value > health:
-		healthbarsmoothed.value -= 10 * delta
-	if healthbarsmoothed.value < health:
-		healthbarsmoothed.value = health
-	healthbar.value = health
+	if stopped:
+		velocity.x = 0
+		velocity.y = 1000
 	
-	if wasonfloor and not coyotetimestarted and not is_on_floor():
-		coyotetimetimer.start()
-		coyotetimestarted = true # so the timer starts only once
-		coyotetime = true
-	
-	if Input.is_action_pressed("z"):
-		speed = 75
-	else:
-		speed = 300
-	
-	if not is_on_floor():
-		if pentagon.attacking == "basic":
-			velocity.y = velocity.y/1.5
-			print(velocity.y)
+	if not stopped:
+		if energy < 100:
+			energy += 25 * delta
 		else:
-			velocity.y += gravity * delta
-		ismoving = false
-		if wasonfloor == true:
-			wasonfloor = false
-	else:
-		wasonfloor = true
+			energy = 100
+		energybar.value = energy
+		if healthbarsmoothed.value > health:
+			healthbarsmoothed.value -= 10 * delta
+		if healthbarsmoothed.value < health:
+			healthbarsmoothed.value = health
+		healthbar.value = health
+		
+		if wasonfloor and not coyotetimestarted and not is_on_floor():
+			coyotetimetimer.start()
+			coyotetimestarted = true # so the timer starts only once
+			coyotetime = true
 	
-	if not Input.is_action_pressed("z"):
-		if ((Input.is_action_just_pressed("up") or canjump) and is_on_floor()) or (Input.is_action_just_pressed("up") and coyotetime and velocity.y > 0):
-			jumpanimation.play("jump")
-			velocity.y = jump_velocity
-			coyotetime = false
-			canjump = false
-			footstoolcount = 1
-		elif Input.is_action_just_pressed("up") and not is_on_floor():
-			jumpbuffertimer.start()
-			canjump = true
-			footstoolcount = 1
-	
+		if Input.is_action_pressed("z"):
+			speed = 75
+		else:
+			speed = 300
+		
+		if not is_on_floor():
+			if pentagon.attacking == "basic":
+				velocity.y = velocity.y/1.5
+				print(velocity.y)
+			else:
+				velocity.y += gravity * delta
+			ismoving = false
+			if wasonfloor == true:
+				wasonfloor = false
+		else:
+			wasonfloor = true
+		
+		if not Input.is_action_pressed("z"):
+			if ((Input.is_action_just_pressed("up") or canjump) and is_on_floor()) or (Input.is_action_just_pressed("up") and coyotetime and velocity.y > 0):
+				jumpanimation.play("jump")
+				velocity.y = jump_velocity
+				coyotetime = false
+				canjump = false
+				footstoolcount = 1
+			elif Input.is_action_just_pressed("up") and not is_on_floor():
+				jumpbuffertimer.start()
+				canjump = true
+				footstoolcount = 1
+		
 
-	direction = Input.get_axis("left", "right")
-	if direction:
-		velocity.x = lerp(velocity.x, direction * speed, acceleration_rate * delta)
-		if is_on_floor():
-			walkanimation.play("walk")
+		direction = Input.get_axis("left", "right")
+		if direction:
+			velocity.x = lerp(velocity.x, direction * speed, acceleration_rate * delta)
+			if is_on_floor():
+				walkanimation.play("walk")
+			else:
+				walkanimation.pause()
 		else:
-			walkanimation.pause()
-	else:
-		velocity.x = lerp(velocity.x, 0.0, friction_rate * delta)
-		walkanimation.stop()
+			velocity.x = lerp(velocity.x, 0.0, friction_rate * delta)
+			walkanimation.stop()
 
 	move_and_slide()
 

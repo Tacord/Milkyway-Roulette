@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://blft2ylnsqe0f"]
+[gd_scene load_steps=13 format=3 uid="uid://blft2ylnsqe0f"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_rq34v"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="2_inlc7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c3xrhkbrv3t5" path="res://scenes/spike.tscn" id="9_6leed"]
 [ext_resource type="PackedScene" uid="uid://ddgyw2smrrak7" path="res://scenes/spike_row.tscn" id="9_wpvhk"]
 [ext_resource type="PackedScene" uid="uid://bncfdi6l33vhe" path="res://scenes/spike_checkpoint.tscn" id="11_xljeo"]
+[ext_resource type="PackedScene" uid="uid://i4svkav6qiow" path="res://scenes/elevator.tscn" id="12_6lfg3"]
 
 [node name="1 The Foyer" type="Node2D"]
 
@@ -126,6 +127,11 @@ position = Vector2(5647, -1690.43)
 rotation = 1.5707964
 scale = Vector2(56.45, 1)
 
+[node name="Surface33" parent="Objects" instance=ExtResource("2_inlc7")]
+position = Vector2(-1315.275, -30.09)
+rotation = 1.5707964
+scale = Vector2(9.78, 1)
+
 [node name="Surface25" parent="Objects" instance=ExtResource("2_inlc7")]
 position = Vector2(3405.755, -1653.265)
 rotation = 1.5707964
@@ -235,6 +241,14 @@ offset_right = 3421.0
 offset_bottom = 524.0
 color = Color(0, 0, 0, 1)
 
+[node name="CoverBox7" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = 5317.0
+offset_top = -1124.0
+offset_right = 5673.0
+offset_bottom = 534.0
+color = Color(0, 0, 0, 1)
+
 [node name="CoverBox4" type="ColorRect" parent="Objects"]
 z_index = -1
 offset_left = 2016.0
@@ -261,7 +275,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_rq34v")]
 z_index = 1
-position = Vector2(-1254, 0)
+position = Vector2(-1134, -40)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -358,3 +372,7 @@ position = Vector2(4793, -1278)
 [node name="Spike Checkpoint" parent="." instance=ExtResource("11_xljeo")]
 position = Vector2(3238, -1209)
 scale = Vector2(4.94, 4.94)
+
+[node name="Elevator" parent="." instance=ExtResource("12_6lfg3")]
+position = Vector2(5480, -1243)
+scale = Vector2(0.5, 0.5)
