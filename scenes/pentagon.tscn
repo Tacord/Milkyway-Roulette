@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c41qlmctf1rr6"]
+[gd_scene load_steps=7 format=3 uid="uid://c41qlmctf1rr6"]
 
 [ext_resource type="Script" uid="uid://bttubg1g7in3k" path="res://scripts/pentagon.gd" id="1_nsxuo"]
 [ext_resource type="Texture2D" uid="uid://b07ljly23fqn3" path="res://assets/pentagon.png" id="2_mgpic"]
+[ext_resource type="AudioStream" uid="uid://bcvrwm5c46u12" path="res://assets/hit.ogg" id="3_mgpic"]
+[ext_resource type="AudioStream" uid="uid://cuod4p50ih4yu" path="res://assets/heavy.ogg" id="4_xgwdn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsxuo"]
 radius = 90.0
@@ -10,7 +12,7 @@ radius = 90.0
 offsets = PackedFloat32Array(0, 0.65068495, 1)
 colors = PackedColorArray(0.38431373, 0.57254905, 0.61960787, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Pentagon" type="Area2D"]
+[node name="Pentagon" type="Area2D" groups=["Pentagon"]]
 script = ExtResource("1_nsxuo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -69,6 +71,12 @@ initial_velocity_max = 26.8
 scale_amount_min = 2.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_nsxuo")
+
+[node name="BasicAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mgpic")
+
+[node name="HeavyAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xgwdn")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

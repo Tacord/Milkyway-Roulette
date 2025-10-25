@@ -10,6 +10,7 @@ extends Area2D
 @onready var heavyparticle = $HeavyParticle
 @onready var basicparticle = $BasicParticle
 
+var rng = RandomNumberGenerator.new()
 var speed: float = 20
 var offset: Vector2 = Vector2(60, 15)
 var attacking : String = "none"
@@ -56,6 +57,8 @@ func _process(delta: float) -> void:
 		position = position.lerp(attacktargetposition, speed * delta)
 
 func heavy_attack():
+	$HeavyAttack.pitch_scale = rng.randf_range(0.8, 1.2)
+	$HeavyAttack.play()
 	player.camerashake.play("heavy")
 	heavyparticle.emitting = true
 	player.energy -= 50
@@ -107,6 +110,8 @@ func heavy_attack():
 		combo = 0
 
 func basic_attack():
+	$BasicAttack.pitch_scale = rng.randf_range(0.9, 1.1)
+	$BasicAttack.play()
 	player.camerashake.play("basic")
 	basicparticle.emitting = true
 	attacking = "basic"

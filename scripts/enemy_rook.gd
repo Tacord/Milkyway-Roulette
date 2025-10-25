@@ -2,14 +2,16 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 
-const SPEED : float = 170.0
-const jump_velocity : float = -450.0
-const GRAVITY : float = 1000.0
+const SPEED : float = 50.0
+const JUMP_VELOCITY : float = -400.0
+const GRAVITY : float = 900.0
 var targetting : bool = false
 var direction_to_player : float
 var direction_x : float
-var health : float = 100
+var health : float = 50
 var facing : String = "left"
+var shieldhealth : float = 100
+var inside : bool = false
 
 func _physics_process(delta: float) -> void:
 	
@@ -31,24 +33,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_update_position_timer_timeout() -> void:
-	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100 and abs(player.global_position.y - global_position.y) < 250
-	if player.position.x > position.x:
-		$Sprite2D.flip_h = 1
-	else:
-		$Sprite2D.flip_h = 0
-	if abs(player.global_position.x - global_position.x) < 270 and is_on_floor() and abs(player.global_position.x - global_position.x) >= 100:
-		velocity.y = jump_velocity
-	if abs(player.global_position.x - global_position.x) < 100 and is_on_floor():
+	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100 and abs(player.global_position.y - global_position.y) < 300
+	if inside:
+		direction_to_player = player.global_position.x - global_position.x
+		player.damage(2,10,direction_to_player)
+	if abs(player.global_position.x - global_position.x) < 100:
 		if direction_to_player > 0:
 			$AttackAnimation.play("attack")
 		else:
 			$AttackAnimation.play("attack_left")
-	if abs(player.global_position.x - global_position.x) < 50 and abs(player.global_position.y - global_position.y) < 100:
-		if direction_to_player > 0:
-			velocity.x = -1000
-		else:
-			velocity.x = 1000
-		velocity.y = -300
 
 func damage(damage: float, knockback : float):
 	direction_to_player = player.global_position.x - global_position.x
@@ -72,7 +65,35 @@ func damage(damage: float, knockback : float):
 	$UpdatePositionTimer.stop()
 	$UpdatePositionTimer.start()
 
-
 func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("Player"):
-		body.damage(15, 5, direction_to_player)
+		body.damage(10, 1, direction_to_player)
+
+
+func _on_shield_body_entered(body: CharacterBody2D) -> void:
+	if body.is_in_group("Player"):
+		inside = true
+		direction_to_player = player.global_position.x - global_position.x
+		body.damage(2,10,direction_to_player)
+
+
+func _on_shield_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Pentagon"):
+		if area.attacking != "none":
+			area.attacking = "none"
+			$Shield/ShieldBar.show()
+			shieldhealth -= 15
+			if shieldhealth <= 0:
+				$ShieldDestroyAnimation.play("shieldbreak")
+				$Shield/CollisionShape2D.queue_free()
+				$Shield/ShieldBar.value = 0
+				await $ShieldDestroyAnimation.animation_finished
+				$Shield.queue_free()
+			else:
+				$ShieldDamage.play("shielddamage")
+		$Shield/ShieldBar.value = shieldhealth
+
+
+func _on_shield_body_exited(body: CharacterBody2D) -> void:
+	if body.is_in_group("Player"):
+		inside = false
