@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6tio6lak3ucb"]
+
+[ext_resource type="Script" uid="uid://y7im8g77bwii" path="res://scripts/ambush_attack.gd" id="1_lxavt"]
+[ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="2_gdkr8"]
+[ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="3_47aiu"]
+[ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="4_a6lf4"]
+[ext_resource type="PackedScene" uid="uid://5qo3xemxp5ye" path="res://scenes/enemy_rook.tscn" id="5_uvp4j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epxx3"]
+size = Vector2(84, 512.25)
+
+[node name="Ambush Attack" type="Area2D"]
+script = ExtResource("1_lxavt")
+Pawn = ExtResource("2_gdkr8")
+Bishop = ExtResource("3_47aiu")
+Knight = ExtResource("4_a6lf4")
+Rook = ExtResource("5_uvp4j")
+Pawncount = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -124.875)
+shape = SubResource("RectangleShape2D_epxx3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

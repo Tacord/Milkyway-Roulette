@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqobo4w7e1hdd"]
+[gd_scene load_steps=13 format=3 uid="uid://dqobo4w7e1hdd"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_exm2p"]
 [ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="2_3ukjp"]
@@ -10,12 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="8_2ah68"]
 [ext_resource type="PackedScene" uid="uid://b8jbuf55sxkw6" path="res://scenes/enter_door.tscn" id="9_ie1ry"]
 [ext_resource type="PackedScene" uid="uid://5qo3xemxp5ye" path="res://scenes/enemy_rook.tscn" id="10_2ah68"]
+[ext_resource type="PackedScene" uid="uid://c6tio6lak3ucb" path="res://scenes/ambush_attack.tscn" id="11_ypaye"]
+[ext_resource type="PackedScene" uid="uid://i4svkav6qiow" path="res://scenes/elevator.tscn" id="12_bxp0b"]
 
 [node name="2 Hall of Fortuity" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_exm2p")]
 z_index = 1
-position = Vector2(7879, -318)
+position = Vector2(-2048, -33)
 cam_bound_y_top = -500.0
 cam_bound_y_bottom = 300.0
 
@@ -153,19 +155,16 @@ offset_bottom = 1455.6046
 color = Color(0, 0, 0, 1)
 
 [node name="EnemyKnight" parent="." instance=ExtResource("6_wwjob")]
-position = Vector2(-1258, 8)
+position = Vector2(-1510, -88)
 
 [node name="EnemyPawn" parent="." instance=ExtResource("7_ie1ry")]
-position = Vector2(-1183, 12)
+position = Vector2(-1435, -84)
 
 [node name="EnemyPawn2" parent="." instance=ExtResource("7_ie1ry")]
-position = Vector2(-1119, 12)
+position = Vector2(-1371, -84)
 
 [node name="EnemyPawn3" parent="." instance=ExtResource("7_ie1ry")]
-position = Vector2(-1056, 15)
-
-[node name="EnemyKnight2" parent="." instance=ExtResource("6_wwjob")]
-position = Vector2(-992, 10)
+position = Vector2(-1308, -81)
 
 [node name="EnemyBishop" parent="." instance=ExtResource("8_2ah68")]
 position = Vector2(211, 8)
@@ -174,7 +173,7 @@ position = Vector2(211, 8)
 position = Vector2(114, 10)
 
 [node name="EnemyBishop2" parent="." instance=ExtResource("8_2ah68")]
-position = Vector2(-517, 12)
+position = Vector2(-645.00006, 12)
 
 [node name="EnemyKnight3" parent="." instance=ExtResource("6_wwjob")]
 position = Vector2(13, 8)
@@ -188,4 +187,79 @@ position = Vector2(5317.0005, -2)
 result_pos = Vector2(2300, 0)
 
 [node name="EnemyRook" parent="." instance=ExtResource("10_2ah68")]
-position = Vector2(8554, 25)
+position = Vector2(8382, 20)
+
+[node name="EnemyRook2" parent="." instance=ExtResource("10_2ah68")]
+position = Vector2(9405, 14)
+
+[node name="EnemyBishop3" parent="." instance=ExtResource("8_2ah68")]
+position = Vector2(9259, 12)
+
+[node name="EnemyBishop4" parent="." instance=ExtResource("8_2ah68")]
+position = Vector2(9334, 11)
+
+[node name="EnemyRook3" parent="." instance=ExtResource("10_2ah68")]
+position = Vector2(10148, 19)
+
+[node name="EnemyRook4" parent="." instance=ExtResource("10_2ah68")]
+position = Vector2(10421, 21)
+
+[node name="EnemyKnight4" parent="." instance=ExtResource("6_wwjob")]
+position = Vector2(10072, 15)
+
+[node name="EnemyBishop5" parent="." instance=ExtResource("8_2ah68")]
+position = Vector2(10486.001, 18.000002)
+
+[node name="EnemyPawn7" parent="." instance=ExtResource("7_ie1ry")]
+position = Vector2(10346, 21)
+
+[node name="Ambush Attack" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(3713, -71)
+Pawncount = 1
+Knightcount = 1
+
+[node name="Ambush Attack2" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(3713, -71)
+Pawncount = 1
+Knightcount = 1
+offset = 400.0
+
+[node name="Ambush Attack5" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(2953, -71)
+offset = 400.0
+
+[node name="Ambush Attack6" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(2953, -71)
+
+[node name="Ambush Attack3" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(4456, -71)
+Pawncount = 1
+Knightcount = 1
+
+[node name="Ambush Attack4" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(4456, -71)
+Pawncount = 0
+Bishopcount = 1
+offset = 400.0
+
+[node name="EnemyPawn8" parent="." instance=ExtResource("7_ie1ry")]
+position = Vector2(4651, 20)
+
+[node name="EnemyPawn9" parent="." instance=ExtResource("7_ie1ry")]
+position = Vector2(3888, 24)
+
+[node name="Ambush Attack7" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(9062, -35)
+Pawncount = 1
+offset = -400.0
+
+[node name="Ambush Attack8" parent="." instance=ExtResource("11_ypaye")]
+position = Vector2(10006, -29)
+Pawncount = 1
+Knightcount = 1
+offset = -300.0
+
+[node name="Elevator" parent="." instance=ExtResource("12_bxp0b")]
+z_index = -1
+position = Vector2(10533, -50)
+scale = Vector2(0.5, 0.5)

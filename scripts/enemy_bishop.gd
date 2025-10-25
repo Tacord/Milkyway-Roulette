@@ -2,20 +2,20 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 
-const SPEED : float = 50.0
+@export var SPEED : float = 50.0
 const JUMP_VELOCITY : float = -400.0
 const GRAVITY : float = 900.0
 var targetting : bool = false
 var direction_to_player : float
 var direction_x : float
-var health : float = 75
+@export var  health : float = 75
 var facing : String = "left"
 var retreat : bool = false
 var cooldown : bool = false
 const projectile = preload("res://scenes/bishop_projectile.tscn")
 
 func _ready():
-	pass
+	$Spawn.play("spawn")
 
 func _physics_process(delta: float) -> void:
 	

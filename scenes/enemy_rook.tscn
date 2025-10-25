@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://5qo3xemxp5ye"]
+[gd_scene load_steps=37 format=3 uid="uid://5qo3xemxp5ye"]
 
 [ext_resource type="Script" uid="uid://dheg32om0buvb" path="res://scripts/enemy_rook.gd" id="1_yfr6m"]
 [ext_resource type="Texture2D" uid="uid://dc5bubk8dn5la" path="res://assets/corrupted rookcharacter.png" id="2_efvn0"]
@@ -103,6 +103,69 @@ _data = {
 &"walk": SubResource("Animation_g2els")
 }
 
+[sub_resource type="Animation" id="Animation_2egy8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Shield/Shield Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Shield/Shield Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shield/ShieldBar:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-34, -120)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Shield/ShieldBar:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Shield/ShieldBar:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_efvn0"]
 resource_name = "shieldbreak"
 length = 0.8
@@ -165,69 +228,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2egy8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Shield/Shield Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.4, 0.4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Shield/Shield Sprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Shield/ShieldBar:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-34, -120)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Shield/ShieldBar:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Shield/ShieldBar:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3dwf6"]
@@ -521,6 +521,45 @@ _data = {
 &"footstool": SubResource("Animation_lbalf")
 }
 
+[sub_resource type="Animation" id="Animation_2m4t4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shield/ShieldBar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.135, 0.135)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shield/ShieldBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-34, -120)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shield/Shield Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+
 [sub_resource type="Animation" id="Animation_m0fjq"]
 resource_name = "shielddamage"
 length = 0.2
@@ -561,49 +600,71 @@ tracks/2/keys = {
 "values": [Vector2(0.42, 0.42), Vector2(0.4, 0.4)]
 }
 
-[sub_resource type="Animation" id="Animation_2m4t4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtpts"]
+_data = {
+&"RESET": SubResource("Animation_2m4t4"),
+&"shielddamage": SubResource("Animation_m0fjq")
+}
+
+[sub_resource type="Animation" id="Animation_j8fct"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.5),
+"transitions": PackedFloat32Array(0.39229208, 0.37892914, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.12, 0.12), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2102241, 1),
+"update": 0,
+"values": [-8.726646259971648, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4hunc"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shield/ShieldBar:scale")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.135, 0.135)]
+"values": [Vector2(0.1, 0.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shield/ShieldBar:position")
+tracks/1/path = NodePath("Sprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-34, -120)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shield/Shield Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.4, 0.4)]
+"values": [0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtpts"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1bxa"]
 _data = {
-&"RESET": SubResource("Animation_2m4t4"),
-&"shielddamage": SubResource("Animation_m0fjq")
+&"RESET": SubResource("Animation_4hunc"),
+&"spawn": SubResource("Animation_j8fct")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m0fjq"]
@@ -611,13 +672,13 @@ radius = 22.307693
 height = 44.615387
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2egy8"]
-radius = 161.00311
+radius = 180.01111
 
 [node name="EnemyRook" type="CharacterBody2D" groups=["Goon"]]
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_yfr6m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 6.2831855
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_efvn0")
 
@@ -666,6 +727,11 @@ libraries = {
 [node name="ShieldDamage" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gtpts")
+}
+
+[node name="Spawn" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p1bxa")
 }
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]

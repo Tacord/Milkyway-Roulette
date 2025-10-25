@@ -2,14 +2,17 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 
-const SPEED : float = 170.0
+@export var  SPEED : float = 170.0
 const jump_velocity : float = -450.0
 const GRAVITY : float = 1000.0
 var targetting : bool = false
 var direction_to_player : float
 var direction_x : float
-var health : float = 100
+@export var  health : float = 100
 var facing : String = "left"
+
+func _ready():
+	$Spawn.play("spawn")
 
 func _physics_process(delta: float) -> void:
 	

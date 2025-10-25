@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 
-const SPEED : float = 50.0
+@export var  SPEED : float = 50.0
 const JUMP_VELOCITY : float = -400.0
 const GRAVITY : float = 900.0
 var targetting : bool = false
@@ -12,6 +12,9 @@ var health : float = 50
 var facing : String = "left"
 var shieldhealth : float = 100
 var inside : bool = false
+
+func _ready():
+	$Spawn.play("spawn")
 
 func _physics_process(delta: float) -> void:
 	
@@ -36,7 +39,7 @@ func _on_update_position_timer_timeout() -> void:
 	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100 and abs(player.global_position.y - global_position.y) < 300
 	if inside:
 		direction_to_player = player.global_position.x - global_position.x
-		player.damage(2,10,direction_to_player)
+		player.damage(5,20,direction_to_player)
 	if abs(player.global_position.x - global_position.x) < 100:
 		if direction_to_player > 0:
 			$AttackAnimation.play("attack")
@@ -74,7 +77,7 @@ func _on_shield_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("Player"):
 		inside = true
 		direction_to_player = player.global_position.x - global_position.x
-		body.damage(2,10,direction_to_player)
+		body.damage(5,10,direction_to_player)
 
 
 func _on_shield_area_entered(area: Area2D) -> void:
