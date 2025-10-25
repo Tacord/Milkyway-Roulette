@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqobo4w7e1hdd"]
+[gd_scene load_steps=14 format=3 uid="uid://dqobo4w7e1hdd"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_exm2p"]
 [ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="2_3ukjp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="4_wwjob"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="5_ie1ry"]
 [ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="6_wwjob"]
+[ext_resource type="Texture2D" uid="uid://bk5mft7yvma7" path="res://assets/elevator.png" id="7_08lla"]
 [ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="7_ie1ry"]
 [ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="8_2ah68"]
 [ext_resource type="PackedScene" uid="uid://b8jbuf55sxkw6" path="res://scenes/enter_door.tscn" id="9_ie1ry"]
@@ -17,7 +18,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_exm2p")]
 z_index = 1
-position = Vector2(-2048, -33)
+position = Vector2(-2236, 12)
 cam_bound_y_top = -500.0
 cam_bound_y_bottom = 300.0
 
@@ -43,8 +44,8 @@ z_index = 2
 z_index = 100
 
 [node name="Surface" parent="Objects" instance=ExtResource("5_ie1ry")]
-position = Vector2(-699.37, 73)
-scale = Vector2(151.6, 1)
+position = Vector2(-793.36, 73)
+scale = Vector2(160.605, 1)
 
 [node name="Surface8" parent="Objects" instance=ExtResource("5_ie1ry")]
 position = Vector2(587, -283.72)
@@ -65,18 +66,18 @@ position = Vector2(705, -153.38)
 scale = Vector2(11.13, 1)
 
 [node name="Surface18" parent="Objects" instance=ExtResource("5_ie1ry")]
-position = Vector2(-2001.9999, -289.00003)
+position = Vector2(-2002, -340.79)
 rotation = 1.5707964
-scale = Vector2(11.376, 1.097)
+scale = Vector2(6.841, 1.097)
 
 [node name="Surface19" parent="Objects" instance=ExtResource("5_ie1ry")]
-position = Vector2(-2219, -52.99997)
+position = Vector2(-2407.805, -104.8)
 rotation = 1.5707964
-scale = Vector2(12.211, 1.097)
+scale = Vector2(17.326, 1.097)
 
 [node name="Surface7" parent="Objects" instance=ExtResource("5_ie1ry")]
-position = Vector2(-2102, -165.655)
-scale = Vector2(11.13, 1)
+position = Vector2(-2197.08, -269)
+scale = Vector2(20.385, 1)
 
 [node name="Surface4" parent="Objects" instance=ExtResource("5_ie1ry")]
 position = Vector2(3855.6304, 73)
@@ -154,8 +155,31 @@ offset_right = 10784.0
 offset_bottom = 1455.6046
 color = Color(0, 0, 0, 1)
 
+[node name="CoverBox9" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = 2110.0
+offset_top = 70.0
+offset_right = 5433.0
+offset_bottom = 1455.6046
+color = Color(0, 0, 0, 1)
+
+[node name="CoverBox10" type="ColorRect" parent="Objects"]
+z_index = -1
+offset_left = -2503.0
+offset_top = 68.0
+offset_right = 820.0
+offset_bottom = 1455.6046
+color = Color(0, 0, 0, 1)
+
 [node name="EnemyKnight" parent="." instance=ExtResource("6_wwjob")]
 position = Vector2(-1510, -88)
+
+[node name="Elevator2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.5058824)
+z_index = -1
+position = Vector2(-2234, -60)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_08lla")
 
 [node name="EnemyPawn" parent="." instance=ExtResource("7_ie1ry")]
 position = Vector2(-1435, -84)

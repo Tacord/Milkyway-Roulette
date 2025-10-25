@@ -3,6 +3,7 @@ extends Area2D
 var player : CharacterBody2D
 var running : bool = true
 var inside : bool = false
+@export var nextscene : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,8 @@ func _process(delta: float) -> void:
 		$Use.play("use")
 		$AnimationPlayer.play("disappear_2")
 		$Prompt.hide()
+		await $AnimationPlayer.animation_finished
+		get_tree().change_scene_to_packed(nextscene)
 
 
 func _on_body_entered(body: CharacterBody2D) -> void:

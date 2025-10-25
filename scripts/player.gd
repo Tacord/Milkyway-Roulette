@@ -43,6 +43,7 @@ var footstoolcount : int = 1
 var prevpos : Vector2 = Vector2(0,0)
 
 func _ready():
+	cameratransition.play("ready")
 	$Camera2D.limit_top = cam_bound_y_top
 	$Camera2D.limit_bottom = cam_bound_y_bottom
 

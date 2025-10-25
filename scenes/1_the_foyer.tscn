@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blft2ylnsqe0f"]
+[gd_scene load_steps=14 format=3 uid="uid://blft2ylnsqe0f"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_rq34v"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="2_inlc7"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddgyw2smrrak7" path="res://scenes/spike_row.tscn" id="9_wpvhk"]
 [ext_resource type="PackedScene" uid="uid://bncfdi6l33vhe" path="res://scenes/spike_checkpoint.tscn" id="11_xljeo"]
 [ext_resource type="PackedScene" uid="uid://i4svkav6qiow" path="res://scenes/elevator.tscn" id="12_6lfg3"]
+[ext_resource type="PackedScene" uid="uid://dqobo4w7e1hdd" path="res://scenes/2_hall_of_fortuity.tscn" id="13_brqxd"]
 
 [node name="1 The Foyer" type="Node2D"]
 
@@ -384,3 +385,4 @@ scale = Vector2(4.94, 4.94)
 [node name="Elevator" parent="." instance=ExtResource("12_6lfg3")]
 position = Vector2(5480, -1243)
 scale = Vector2(0.5, 0.5)
+nextscene = ExtResource("13_brqxd")
