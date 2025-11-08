@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("c") and inside:
+	if Input.is_action_just_pressed("c") and inside and running:
 		running = false
 		player.cameratransition.play("transition")
 		player.stopped = true

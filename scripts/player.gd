@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var friction_rate : float  = 3.0
 @export var cam_bound_y_top : float = -10000000
 @export var cam_bound_y_bottom : float = 10000000
+@export var cam_bound_x_left : float = -10000000
+@export var cam_bound_x_right : float = 10000000
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var jumpanimation : AnimationPlayer = $JumpAnimation
@@ -26,8 +28,9 @@ extends CharacterBody2D
 @onready var healthbarsmoothed : TextureProgressBar = $CanvasLayer/HealthBarSmooth
 @onready var energybar : TextureProgressBar = $CanvasLayer/EnergyBar
 
+var base_gravity : int = 2000
 var stopped : bool = false
-var gravity : int = 2000
+var gravity : int = base_gravity
 var ismoving : bool = false
 var canjump : bool = false
 var coyotetime : bool = false
@@ -46,6 +49,8 @@ func _ready():
 	cameratransition.play("ready")
 	$Camera2D.limit_top = cam_bound_y_top
 	$Camera2D.limit_bottom = cam_bound_y_bottom
+	$Camera2D.limit_right = cam_bound_x_right
+	$Camera2D.limit_left = cam_bound_x_left
 
 func _physics_process(delta):
 	

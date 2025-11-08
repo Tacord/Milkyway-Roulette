@@ -73,6 +73,8 @@ func heavy_attack():
 	
 	speed = 5
 	scale = Vector2(2,2)
+	player.gravity = 500
+	player.velocity.y = -50
 	
 	var input_direction: Vector2 = Vector2.ZERO
 
@@ -85,9 +87,11 @@ func heavy_attack():
 	if Input.is_action_pressed("up"):
 		input_direction.y -= 1
 		player.velocity.y = 800
+		player.gravity = player.base_gravity
 	if Input.is_action_pressed("down"):
 		input_direction.y += 1
 		player.velocity.y = -800
+		player.gravity = player.base_gravity
 	
 	if input_direction.length() > 0:
 		var normalized_direction: Vector2 = input_direction.normalized()
@@ -176,6 +180,7 @@ func _on_combo_timer_timeout() -> void:
 	combo = 0
 
 func _on_heavy_attack_cooldown_timeout() -> void:
+	player.gravity = player.base_gravity
 	cooldown = false
 
 

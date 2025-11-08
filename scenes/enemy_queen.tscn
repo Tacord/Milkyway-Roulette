@@ -1,0 +1,579 @@
+[gd_scene load_steps=30 format=3 uid="uid://c8vxppoo8mmro"]
+
+[ext_resource type="Script" uid="uid://tm6j12b751gv" path="res://scripts/enemy_queen.gd" id="1_gm04d"]
+[ext_resource type="Texture2D" uid="uid://ceyqqmkpc8a50" path="res://assets/corrupted queencharacter.png" id="2_hohd6"]
+[ext_resource type="Texture2D" uid="uid://gbd1gr6g3y0m" path="res://assets/queenhealthempty.png" id="3_hohd6"]
+[ext_resource type="Texture2D" uid="uid://bv3gcmasyhoi" path="res://assets/queenhealthfull.png" id="4_7w5ad"]
+[ext_resource type="Texture2D" uid="uid://s3wolnvf6y2b" path="res://assets/queenhealthdamaged.png" id="4_ptam2"]
+[ext_resource type="FontFile" uid="uid://4hgqug18ve0r" path="res://assets/AbrilFatface-Regular.ttf" id="5_ptam2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbncm"]
+radius = 16.0
+height = 162.0
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.36602142, 1),
+"update": 0,
+"values": [Vector2(0.07, 0.13), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.36602142, 1),
+"update": 0,
+"values": [Vector2(0, -7), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g2els"]
+resource_name = "walk"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0.11, 0.09), Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
+_data = {
+&"RESET": SubResource("Animation_qhqgy"),
+&"jump": SubResource("Animation_dqkch"),
+&"walk": SubResource("Animation_g2els")
+}
+
+[sub_resource type="Animation" id="Animation_pn8is"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cbncm"]
+resource_name = "death"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.99999994, 0.1254001, 0.07805187, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r47x2"]
+_data = {
+&"RESET": SubResource("Animation_pn8is"),
+&"death": SubResource("Animation_cbncm")
+}
+
+[sub_resource type="Animation" id="Animation_ywpfa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t0c4q"]
+resource_name = "hurt"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.3077861, 1),
+"update": 0,
+"values": [Vector2(0.115, 0.115), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.99998075, 0.32389256, 0.26108572, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kymhc"]
+_data = {
+&"RESET": SubResource("Animation_ywpfa"),
+&"hurt": SubResource("Animation_t0c4q")
+}
+
+[sub_resource type="Animation" id="Animation_kymhc"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_r47x2"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(80, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(2.143547, 0.5176324, 1),
+"update": 0,
+"values": [0.0, 0.29670597283903605, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Hurtbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(80, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bxt6w"]
+resource_name = "attack_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-80, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(2.143547, 0.5176324, 1),
+"update": 0,
+"values": [0.0, -0.29670597283903605, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Hurtbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1.9318733, 0.57434916, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-80, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxt6w"]
+_data = {
+&"RESET": SubResource("Animation_kymhc"),
+&"attack": SubResource("Animation_r47x2"),
+&"attack_left": SubResource("Animation_bxt6w")
+}
+
+[sub_resource type="Animation" id="Animation_ldb65"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lbalf"]
+resource_name = "footstool"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0.05), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 19.105), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.99998075, 0.3238926, 0.26108575, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8fct"]
+_data = {
+&"RESET": SubResource("Animation_ldb65"),
+&"footstool": SubResource("Animation_lbalf")
+}
+
+[sub_resource type="Animation" id="Animation_4hunc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_j8fct"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.5),
+"transitions": PackedFloat32Array(0.39229208, 0.37892914, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.12, 0.12), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2102241, 1),
+"update": 0,
+"values": [-8.726646259971648, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1bxa"]
+_data = {
+&"RESET": SubResource("Animation_4hunc"),
+&"spawn": SubResource("Animation_j8fct")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r47x2"]
+radius = 29.0
+height = 58.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_fts25"]
+font = ExtResource("5_ptam2")
+font_size = 31
+shadow_size = 21
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="EnemyQueen" type="CharacterBody2D" groups=["Goon"]]
+script = ExtResource("1_gm04d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_hohd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_cbncm")
+
+[node name="UpdatePositionTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="WalkAnimation" type="AnimationPlayer" parent="." groups=["Goon"]]
+libraries = {
+&"": SubResource("AnimationLibrary_dqkch")
+}
+playback_default_blend_time = 0.5
+speed_scale = 0.1
+
+[node name="DeathAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../WalkAnimation")
+libraries = {
+&"": SubResource("AnimationLibrary_r47x2")
+}
+
+[node name="HurtAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kymhc")
+}
+
+[node name="AttackAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DeathAnimation")
+libraries = {
+&"": SubResource("AnimationLibrary_bxt6w")
+}
+
+[node name="FootstoolAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j8fct")
+}
+
+[node name="Spawn" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p1bxa")
+}
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_r47x2")
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Overlay"]
+
+[node name="HealthBarSmooth" type="TextureProgressBar" parent="Overlay/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -386.99994
+offset_top = -368.0
+offset_right = 813.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.655, 0.655)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1000.0
+step = 0.001
+value = 1000.0
+texture_under = ExtResource("3_hohd6")
+texture_progress = ExtResource("4_ptam2")
+
+[node name="HealthBar" type="TextureProgressBar" parent="Overlay/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -386.99994
+offset_top = -368.0
+offset_right = 813.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.655, 0.655)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1000.0
+value = 1000.0
+texture_progress = ExtResource("4_7w5ad")
+
+[node name="Queenlabel" type="Label" parent="Overlay/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.5
+offset_top = 54.0
+offset_right = 314.5
+offset_bottom = 225.0
+grow_horizontal = 2
+text = "The Queen"
+label_settings = SubResource("LabelSettings_fts25")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="UpdatePositionTimer" to="." method="_on_update_position_timer_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
