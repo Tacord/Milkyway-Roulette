@@ -130,7 +130,7 @@ func _on_attack_timer_timeout() -> void:
 	attacking = false
 
 func damage(damage : float, knockback : float, facing : float):
-	if immunity == false:
+	if immunity == false or damage == 2:
 		hurtanimation.play("hurt")
 		immunitytimer.start()
 		immunity = true
