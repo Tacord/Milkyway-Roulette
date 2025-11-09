@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://brlumw76qtq4q"]
+[gd_scene load_steps=35 format=3 uid="uid://brlumw76qtq4q"]
 
 [ext_resource type="Script" uid="uid://cpvrpqgx2hr03" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://wk0jo31r04lf" path="res://assets/pawncharacter.png" id="2_g2els"]
@@ -456,6 +456,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/HealthBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_a8ls1"]
 resource_name = "ready"
@@ -503,9 +515,26 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qfm1y"]
+resource_name = "heal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/HealthBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 3.5066178, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oprun"]
 _data = {
 &"RESET": SubResource("Animation_f1ej7"),
+&"heal": SubResource("Animation_qfm1y"),
 &"ready": SubResource("Animation_a8ls1"),
 &"transition": SubResource("Animation_jej6c"),
 &"transition_2": SubResource("Animation_oprun")
