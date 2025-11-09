@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var player = $"../Player"
 const projectile = preload("res://scenes/queen_projectile.tscn")
+const bladeprojectile = preload("res://scenes/queen_blade_projectile.tscn")
 
 @export var  SPEED : float = 100.0
 const JUMP_VELOCITY : float = -400.0
@@ -57,6 +58,7 @@ func dash_attack():
 	for i in range(2):
 		direction_to_player = player.global_position.x - global_position.x
 		direction_x = 1
+		player.camerashake.play("heavy")
 		if direction_to_player > 0:
 			targetting_x = 1
 			$DashAttack.play("dash_warning")
@@ -64,16 +66,16 @@ func dash_attack():
 			targetting_x = -1
 			$DashAttack.play("dash_warning_left")
 		await $DashAttack.animation_finished
-		print("e")
+		$DotParticle.emitting = true
 		dashing = targetting_x
 		await get_tree().create_timer(0.5).timeout
+		$DotParticle.emitting = false
 		velocity.x = 0
 		dashing = 0
 		if targetting_x == 1:
 			$DashAttack.play("slip")
 		elif targetting_x == -1:
 			$DashAttack.play("slip_left")
-		await get_tree().create_timer(0.7).timeout
 	$AttackTimer.start()
 
 func projectile_attack():
@@ -93,7 +95,17 @@ func projectile_attack():
 		await get_tree().create_timer(0.05).timeout
 	$AttackTimer.start()
 	
-	
+func blade_attack():
+	velocity.y = 1000
+	for i in range(2):
+		$HomingBladeAttack.play("blade")
+		await $HomingBladeAttack.animation_finished
+		player.camerashake.play("heavy")
+		var instance = bladeprojectile.instantiate()
+		get_parent().add_child(instance)
+		instance.global_position.x = global_position.x
+		instance.global_position.y = global_position.y - 100
+	$AttackTimer.start()
 	
 
 func _on_update_position_timer_timeout() -> void:
@@ -128,11 +140,13 @@ func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	projectile_attacking = false
-	decide = randi_range(1,2)
+	decide = randi_range(1,3)
 	targetting = false
 	GRAVITY = 900
 	match decide:
-		1:
-			projectile_attack()
 		2:
+			projectile_attack()
+		1:
 			dash_attack()
+		3:
+			blade_attack()

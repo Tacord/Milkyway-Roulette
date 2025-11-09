@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c8vxppoo8mmro"]
+[gd_scene load_steps=46 format=3 uid="uid://c8vxppoo8mmro"]
 
 [ext_resource type="Script" uid="uid://tm6j12b751gv" path="res://scripts/enemy_queen.gd" id="1_gm04d"]
 [ext_resource type="Texture2D" uid="uid://ceyqqmkpc8a50" path="res://assets/corrupted queencharacter.png" id="2_hohd6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://s3wolnvf6y2b" path="res://assets/queenhealthdamaged.png" id="4_ptam2"]
 [ext_resource type="FontFile" uid="uid://4hgqug18ve0r" path="res://assets/AbrilFatface-Regular.ttf" id="5_ptam2"]
 [ext_resource type="Texture2D" uid="uid://d0cjubwnkpy2r" path="res://assets/dashwarning.png" id="7_ptam2"]
+[ext_resource type="Texture2D" uid="uid://pjrofoxv44wf" path="res://assets/projectile.png" id="8_fts25"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbncm"]
 radius = 39.0
@@ -449,33 +450,6 @@ _data = {
 &"spawn": SubResource("Animation_j8fct")
 }
 
-[sub_resource type="Animation" id="Animation_i4f4v"]
-resource_name = "vanish_appear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.796116, 1),
-"transitions": PackedFloat32Array(0.5547847, 1, 0.5358867, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(0, 0), Vector2(0, 0), Vector2(0.1, 0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.796116, 1),
-"transitions": PackedFloat32Array(0.5547847, 1, 0.5358867, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_qxsbf"]
 length = 0.001
 tracks/0/type = "value"
@@ -503,98 +477,37 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_13ta2"]
-_data = {
-&"RESET": SubResource("Animation_qxsbf"),
-&"vanish_appear": SubResource("Animation_i4f4v")
-}
-
-[sub_resource type="Animation" id="Animation_fts25"]
-resource_name = "dash_warning"
-length = 1.3
+[sub_resource type="Animation" id="Animation_i4f4v"]
+resource_name = "vanish_appear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DashWarning:modulate")
+tracks/0/path = NodePath("../Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.5, 1.2, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.796116, 1),
+"transitions": PackedFloat32Array(0.5547847, 1, 0.5358867, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0.1, 0.1), Vector2(0, 0), Vector2(0, 0), Vector2(0.1, 0.1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DashWarning:position")
+tracks/1/path = NodePath("../Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.23333333, 0.5),
-"transitions": PackedFloat32Array(0.37892905, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.796116, 1),
+"transitions": PackedFloat32Array(0.5547847, 1, 0.5358867, 1),
 "update": 0,
-"values": [Vector2(200, -1), Vector2(360.00003, -1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DashWarning:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.40000004, 0.5013986, 0.60139865, 0.70000005, 0.8, 0.9013987, 1.0013986, 1.099649, 1.1996491),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DashWarning:flip_h")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 1.3000001),
-"transitions": PackedFloat32Array(0.39229217, 2.1435473, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -131.615), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.36666667),
-"transitions": PackedFloat32Array(0.78458416, 0.30778605, 1),
-"update": 0,
-"values": [0.0, 4.71238898038469, 6.283185307179586]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13ta2"]
+_data = {
+&"RESET": SubResource("Animation_qxsbf"),
+&"vanish_appear": SubResource("Animation_i4f4v")
 }
 
 [sub_resource type="Animation" id="Animation_8o7of"]
@@ -684,9 +597,8 @@ tracks/6/keys = {
 "values": [Vector2(0.1, 0.1)]
 }
 
-[sub_resource type="Animation" id="Animation_ptam2"]
-resource_name = "dash_warning_left"
-length = 1.3
+[sub_resource type="Animation" id="Animation_fts25"]
+resource_name = "dash_warning"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -694,7 +606,94 @@ tracks/0/path = NodePath("DashWarning:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.5, 1.2, 1.3),
+"times": PackedFloat32Array(0.3, 0.5, 0.93333334, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DashWarning:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 0.5),
+"transitions": PackedFloat32Array(0.37892905, 1),
+"update": 0,
+"values": [Vector2(200, -1), Vector2(360.00003, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DashWarning:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.40000004, 0.5013986, 0.60139865, 0.70000005, 0.8, 0.9013987, 1.0013986, 1.099649, 1.1996491),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38), Vector2(0.361, 0.361), Vector2(0.38, 0.38)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DashWarning:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 1.3000001),
+"transitions": PackedFloat32Array(0.39229217, 2.1435473, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -131.615), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.36666667),
+"transitions": PackedFloat32Array(0.78458416, 0.30778605, 1),
+"update": 0,
+"values": [0.0, 4.71238898038469, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_ptam2"]
+resource_name = "dash_warning_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DashWarning:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.93333334, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -730,7 +729,7 @@ tracks/3/path = NodePath("DashWarning:flip_h")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.3),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -742,7 +741,7 @@ tracks/4/path = NodePath("Sprite2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 1.3000001),
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 1),
 "transitions": PackedFloat32Array(0.39229217, 2.1435473, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -131.615), Vector2(0, 0), Vector2(0, 0)]
@@ -837,6 +836,84 @@ _data = {
 &"slip_left": SubResource("Animation_b4wbs")
 }
 
+[sub_resource type="Animation" id="Animation_13ta2"]
+resource_name = "blade"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0.6597538, 2.1435468, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -107.71), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sy3o3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_14e2j"]
+resource_name = "blade_2"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.6372803, 1, 0.35355353, 1),
+"update": 0,
+"values": [0.0, 0.80634211442138, 0.80634211442138, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.6372803, 1, 0.35355353, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(82.245, -7.93), Vector2(82.245, -7.93), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_14e2j"]
+_data = {
+&"RESET": SubResource("Animation_sy3o3"),
+&"blade": SubResource("Animation_13ta2"),
+&"blade_2": SubResource("Animation_14e2j")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r47x2"]
 radius = 65.0
 height = 130.0
@@ -846,6 +923,10 @@ font = ExtResource("5_ptam2")
 font_size = 31
 shadow_size = 21
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_8o7of"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5232559, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="EnemyQueen" type="CharacterBody2D" groups=["Goon"]]
 script = ExtResource("1_gm04d")
@@ -905,6 +986,11 @@ libraries = {
 [node name="DashAttack" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_2gdsv")
+}
+
+[node name="HomingBladeAttack" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_14e2j")
 }
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -985,6 +1071,20 @@ texture = ExtResource("7_ptam2")
 wait_time = 1.5
 one_shot = true
 autostart = true
+
+[node name="DotParticle" type="CPUParticles2D" parent="."]
+position = Vector2(0, -86)
+emitting = false
+amount = 40
+texture = ExtResource("8_fts25")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.01
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_8o7of")
+color = Color(1, 1, 1, 0.6)
 
 [connection signal="timeout" from="UpdatePositionTimer" to="." method="_on_update_position_timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

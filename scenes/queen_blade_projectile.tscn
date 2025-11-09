@@ -1,0 +1,179 @@
+[gd_scene load_steps=13 format=3 uid="uid://cums4kjjp2io5"]
+
+[ext_resource type="Script" uid="uid://cd3vv5j6ghow" path="res://scripts/queen_blade_projectile.gd" id="1_wvn33"]
+[ext_resource type="Texture2D" uid="uid://b786ars57iquy" path="res://assets/projectilehard.png" id="2_ipxbm"]
+[ext_resource type="Texture2D" uid="uid://djnor1nstw3sw" path="res://assets/homing projectile.png" id="3_3tyfa"]
+
+[sub_resource type="Curve" id="Curve_a0ttm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5232559, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_a0ttm"]
+offsets = PackedFloat32Array(0, 0.7328767, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_jjitm"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlkk4"]
+size = Vector2(1310.0006, 185.00003)
+
+[sub_resource type="Animation" id="Animation_wvn33"]
+resource_name = "spawn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(0.30778614, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ipxbm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3tyfa"]
+resource_name = "desrtoy"
+
+[sub_resource type="Animation" id="Animation_mlkk4"]
+resource_name = "destroy"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(2.1435468, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.03333333, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_36gqp"]
+_data = {
+&"RESET": SubResource("Animation_ipxbm"),
+&"desrtoy": SubResource("Animation_3tyfa"),
+&"destroy": SubResource("Animation_mlkk4"),
+&"spawn": SubResource("Animation_wvn33")
+}
+
+[node name="Queen Blade Projectile" type="Area2D"]
+z_index = 101
+scale = Vector2(0.025, 0.025)
+script = ExtResource("1_wvn33")
+
+[node name="Particle" type="CPUParticles2D" parent="."]
+position = Vector2(0, -85.99999)
+scale = Vector2(0.99999994, 0.99999994)
+amount = 10
+texture = ExtResource("2_ipxbm")
+lifetime = 0.4
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -89.07
+angular_velocity_max = 74.23
+scale_amount_min = 0.01
+scale_amount_max = 0.03
+scale_amount_curve = SubResource("Curve_a0ttm")
+color = Color(1, 0.42352942, 0.42352942, 0.7019608)
+color_ramp = SubResource("Gradient_a0ttm")
+hue_variation_curve = SubResource("Curve_jjitm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.0517578e-05, -7.6293945e-06)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_3tyfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99999934, 0.99999934)
+shape = SubResource("RectangleShape2D_mlkk4")
+
+[node name="ExpireTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Spawn" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+&"": SubResource("AnimationLibrary_36gqp")
+}
+
+[node name="Destroy" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+&"": SubResource("AnimationLibrary_36gqp")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="ExpireTimer" to="." method="_on_expire_timer_timeout"]
