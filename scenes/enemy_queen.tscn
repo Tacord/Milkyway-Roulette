@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c8vxppoo8mmro"]
+[gd_scene load_steps=51 format=3 uid="uid://c8vxppoo8mmro"]
 
 [ext_resource type="Script" uid="uid://tm6j12b751gv" path="res://scripts/enemy_queen.gd" id="1_gm04d"]
 [ext_resource type="Texture2D" uid="uid://ceyqqmkpc8a50" path="res://assets/corrupted queencharacter.png" id="2_hohd6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://pjrofoxv44wf" path="res://assets/projectile.png" id="8_fts25"]
 [ext_resource type="AudioStream" uid="uid://di7ws16plu5nb" path="res://assets/queendash.ogg" id="9_8o7of"]
 [ext_resource type="AudioStream" uid="uid://bj540qo1op8qq" path="res://assets/gitchball.ogg" id="10_2gdsv"]
+[ext_resource type="AudioStream" uid="uid://csyaf0oy8gjlu" path="res://assets/thequeen.wav" id="10_qxsbf"]
 [ext_resource type="Texture2D" uid="uid://d2o1t02lqss45" path="res://assets/splash text queen1.png" id="11_i4f4v"]
 [ext_resource type="Texture2D" uid="uid://bgw7y7nljf1rb" path="res://assets/splash text queen2.png" id="12_qxsbf"]
 
@@ -393,67 +394,6 @@ _data = {
 &"footstool": SubResource("Animation_lbalf")
 }
 
-[sub_resource type="Animation" id="Animation_4hunc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.1, 0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_j8fct"]
-resource_name = "spawn"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.5),
-"transitions": PackedFloat32Array(0.39229208, 0.37892914, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0.12, 0.12), Vector2(0.1, 0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.2102241, 1),
-"update": 0,
-"values": [-8.726646259971648, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1bxa"]
-_data = {
-&"RESET": SubResource("Animation_4hunc"),
-&"spawn": SubResource("Animation_j8fct")
-}
-
 [sub_resource type="Animation" id="Animation_qxsbf"]
 length = 0.001
 tracks/0/type = "value"
@@ -566,7 +506,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("Sprite2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -915,6 +855,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TitleScreen:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.23333332),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ep4uj"]
 length = 0.001
@@ -928,7 +880,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -2000)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -964,7 +916,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1000.0]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -976,7 +928,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -988,7 +940,19 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TitleScreen:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_afrq1"]
@@ -1013,7 +977,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -1092,6 +1056,7 @@ point_count = 3
 script = ExtResource("1_gm04d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2000)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_hohd6")
 
@@ -1132,11 +1097,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_j8fct")
 }
 
-[node name="Spawn" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_p1bxa")
-}
-
 [node name="Vanish" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DashAttack")
 libraries = {
@@ -1173,6 +1133,7 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="Overlay"]
 
 [node name="HealthBarSmooth" type="TextureProgressBar" parent="Overlay/CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1209,10 +1170,10 @@ scale = Vector2(0.655, 0.655)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 max_value = 1000.0
-value = 1000.0
 texture_progress = ExtResource("4_7w5ad")
 
 [node name="Queenlabel" type="Label" parent="Overlay/CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -1253,6 +1214,9 @@ color = Color(1, 1, 1, 0.6)
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_8o7of")
+
+[node name="TitleScreen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qxsbf")
 
 [node name="ProjectileSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_2gdsv")

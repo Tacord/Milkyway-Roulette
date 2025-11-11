@@ -21,6 +21,7 @@ var decide : int = 0
 var spawning = true
 
 func _ready():
+	player.camerashake.play("queenintro")
 	$Hurtbox.monitoring = false
 	$SpawnAnimation.play("spawn")
 	await $SpawnAnimation.animation_finished

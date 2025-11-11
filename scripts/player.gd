@@ -83,7 +83,6 @@ func _physics_process(delta):
 		if not is_on_floor():
 			if pentagon.attacking == "basic":
 				velocity.y = velocity.y/1.5
-				print(velocity.y)
 			else:
 				velocity.y += gravity * delta
 			ismoving = false

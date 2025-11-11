@@ -5,11 +5,40 @@ extends Node2D
 @export var Knight : PackedScene
 @export var Rook : PackedScene
 @export var Queen : PackedScene
-var Pawncount = [2,5,0,2,0,0,3,0,0,0,0]
-var Bishopcount = [0,0,0,0,0,1,2,0,0,0,0]
-var Knightcount = [0,0,1,1,2,0,0,0,0,0,0]
-var Rookcount = [0,0,0,0,0,0,0,0,0,1,0,0,0,0]
-var Queencount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+@export var Medkit : PackedScene
+
+var Pawncount = [
+	0,2,0,2,0,
+	0,3,0,0,0,
+	0,1,0,0,0,
+	10,0,2,6,3,]
+var Bishopcount = [
+	0,0,0,0,0,
+	1,2,0,0,0,
+	2,1,2,0,5,
+	0,0,0,0,6,]
+var Knightcount = [
+	0,0,1,1,2,
+	0,0,0,0,0,
+	0,1,2,3,0,
+	0,0,0,2,0,]
+var Rookcount = [
+	0,0,0,0,0,
+	0,0,0,0,1,
+	1,1,0,1,0,
+	0,0,0,0,1,]
+var Queencount = [
+	0,0,0,0,0,
+	0,0,0,0,0,
+	0,0,0,0,0,
+	0,1,0,0,0,]
+var Medkitcount = [
+	0,0,0,0,1,
+	0,0,0,0,1,
+	0,0,0,0,1,
+	1,0,1,0,1,
+	0,0,0,0,1,]
+
 var wave : int = -1
 var totalcount : int = 0
 var rng = RandomNumberGenerator.new()
@@ -29,6 +58,8 @@ func _process(delta: float) -> void:
 		wave += 1
 		scorecount.kills = 0
 		totalcount = Pawncount[wave] + Bishopcount[wave] + Knightcount[wave] + Rookcount[wave] + Queencount[wave]
+		print(wave)
+		print(totalcount)
 		spawn_wave()
 	
 func spawn_wave():
@@ -78,7 +109,18 @@ func spawn_wave():
 		add_child(instance)
 	for i in range(0,Queencount[wave]):
 		var instance = Queen.instantiate()
-		instance.position.y = -500
+		instance.position.y = 40
+		decide = rng.randi_range(1,2)
+		if decide == 1:
+			instance.global_position.x = rng.randf_range(-200, -500)
+		else:
+			instance.global_position.x = rng.randf_range(200, 500)
+		var timer = get_tree().create_timer(0.5)
+		await timer.timeout
+		add_child(instance)
+	for i in range(0,Medkitcount[wave]):
+		var instance = Medkit.instantiate()
+		instance.position.y = 40
 		decide = rng.randi_range(1,2)
 		if decide == 1:
 			instance.global_position.x = rng.randf_range(-200, -500)

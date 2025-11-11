@@ -20,6 +20,7 @@ Bishop = ExtResource("3_h7ni3")
 Knight = ExtResource("4_ncb3h")
 Rook = ExtResource("5_fkpit")
 Queen = ExtResource("6_b4ta2")
+Medkit = ExtResource("7_d0juf")
 
 [node name="Player" parent="." instance=ExtResource("1_q37j0")]
 z_index = 1
@@ -99,6 +100,3 @@ offset_top = -1006.0
 offset_right = 1484.0
 offset_bottom = 525.0
 color = Color(0, 0, 0, 1)
-
-[node name="Medkit" parent="." instance=ExtResource("7_d0juf")]
-position = Vector2(557, 41)
