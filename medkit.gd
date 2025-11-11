@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func use():
+	$AudioStreamPlayer.play()
 	$CollisionShape2D.queue_free()
 	$Use.play("use")
 	$UseParticle.emitting = true

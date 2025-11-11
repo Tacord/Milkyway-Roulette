@@ -18,9 +18,15 @@ var projectile_attacking : bool = false
 var target_pos : Vector2 = Vector2(0,0)
 var rng = RandomNumberGenerator.new()
 var decide : int = 0
+var spawning = true
 
 func _ready():
-	$Spawn.play("spawn")
+	$Hurtbox.monitoring = false
+	$SpawnAnimation.play("spawn")
+	await $SpawnAnimation.animation_finished
+	spawning = false
+	$Hurtbox.monitoring = true
+	dash_attack()
 
 func _physics_process(delta: float) -> void:
 	
@@ -58,6 +64,7 @@ func dash_attack():
 	for i in range(2):
 		direction_to_player = player.global_position.x - global_position.x
 		direction_x = 1
+		$DashSound.play()
 		player.camerashake.play("heavy")
 		if direction_to_player > 0:
 			targetting_x = 1
@@ -93,6 +100,7 @@ func projectile_attack():
 		instance.global_position.x = global_position.x + x_offset
 		instance.global_position.y = global_position.y + y_offset
 		await get_tree().create_timer(0.05).timeout
+	$ProjectileSound.play()
 	$AttackTimer.start()
 	
 func blade_attack():
@@ -112,22 +120,25 @@ func _on_update_position_timer_timeout() -> void:
 	targetting = abs(player.global_position.x - global_position.x) < 500 and abs(player.global_position.x - global_position.x) > 100 and abs(player.global_position.y - global_position.y) < 300
 
 func damage(damage: float, knockback : float):
-	direction_to_player = player.global_position.x - global_position.x
-	targetting = false
-	health -= damage
-	$Overlay/CanvasLayer/HealthBar.value = health
-	$Overlay/CanvasLayer/HealthBar.show()
-	if health <= 0:
-		$DeathAnimation.play("death")
-		await $DeathAnimation.animation_finished
-		queue_free()
-	# 20.1 knockback = footstool (im so smart)
-	if damage == 20.01:
-		$FootstoolAnimation.play("footstool")
-	else:
-		$HurtAnimation.play("hurt")
-	$UpdatePositionTimer.stop()
-	$UpdatePositionTimer.start()
+	if not spawning:
+		direction_to_player = player.global_position.x - global_position.x
+		targetting = false
+		health -= damage
+		$Overlay/CanvasLayer/HealthBar.value = health
+		$Overlay/CanvasLayer/HealthBar.show()
+		if health <= 0:
+			scorecount.kills += 1
+			scorecount.score += 90
+			$DeathAnimation.play("death")
+			await $DeathAnimation.animation_finished
+			queue_free()
+		# 20.1 knockback = footstool (im so smart)
+		if damage == 20.01:
+			$FootstoolAnimation.play("footstool")
+		else:
+			$HurtAnimation.play("hurt")
+		$UpdatePositionTimer.stop()
+		$UpdatePositionTimer.start()
 
 
 func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:

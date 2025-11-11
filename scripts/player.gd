@@ -90,6 +90,7 @@ func _physics_process(delta):
 			if wasonfloor == true:
 				wasonfloor = false
 		else:
+			gravity = base_gravity
 			wasonfloor = true
 		
 		if not Input.is_action_pressed("z"):

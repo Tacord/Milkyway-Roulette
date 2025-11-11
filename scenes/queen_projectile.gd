@@ -15,6 +15,9 @@ var target = null
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
+	rng.randomize()
+	$AudioStreamPlayer.pitch_scale = rng.randf_range(0.7,1.3)
+	$AudioStreamPlayer.play()
 	$Spawn.play("spawn")
 	velocity = transform.x * speed
 	target = player

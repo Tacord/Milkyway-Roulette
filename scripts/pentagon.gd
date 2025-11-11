@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 	$Sprite2D.rotation += 2 * delta
 	
 	if Input.is_action_pressed("z") and not cooldown:
+		Input.start_joy_vibration(0, 0.2, 0.2, 0.1)
 		combo += 1
 		if cooldowntimer.is_stopped():
 			cooldowntimer.start()
@@ -41,6 +42,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("x") and not cooldown and player.energy >= 50:
 		if heavycooldowntimer.is_stopped():
+			Input.start_joy_vibration(0, 0.4, 0.4, 0.3)
 			heavycooldowntimer.start()
 		cooldown = true
 		heavy_attack()
@@ -84,7 +86,7 @@ func heavy_attack():
 	if Input.is_action_pressed("left"):
 		input_direction.x -= 1
 		player.velocity.x = 1000
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed("tilt_up"):
 		input_direction.y -= 1
 		player.velocity.y = 800
 		player.gravity = player.base_gravity
@@ -128,16 +130,18 @@ func basic_attack():
 	attacktargetposition.y = player.position.y - 15
 	attacktargetposition.x = player.position.x
 	
-	var input_direction: Vector2 = Vector2.ZERO
-
-	if Input.is_action_pressed("left"):
-		input_direction.x -= 1
-	if Input.is_action_pressed("right"):
-		input_direction.x += 1
-	if Input.is_action_pressed("up"):
-		input_direction.y -= 1
-	if Input.is_action_pressed("down"):
-		input_direction.y += 1
+	var input_direction: Vector2 = Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"), 
+		Input.get_action_strength("down") - Input.get_action_strength("tilt_up")).limit_length(1.0)
+	
+	#if Input.is_action_pressed("left"):
+		#input_direction.x -= 1 - Input.get_action_strength("right")
+	#if Input.is_action_pressed("right"):
+		#input_direction.x += 1 - Input.get_action_strength("left")
+	#if Input.is_action_pressed("tilt_up"):
+		#input_direction.y -= 1 - Input.get_action_strength("down")
+	#if Input.is_action_pressed("down"):
+		#input_direction.y += 1 - - Input.get_action_strength("tilt_up")
 	
 	if input_direction.length() > 0:
 		var normalized_direction: Vector2 = input_direction.normalized()

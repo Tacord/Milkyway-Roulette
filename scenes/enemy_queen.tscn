@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c8vxppoo8mmro"]
+[gd_scene load_steps=53 format=3 uid="uid://c8vxppoo8mmro"]
 
 [ext_resource type="Script" uid="uid://tm6j12b751gv" path="res://scripts/enemy_queen.gd" id="1_gm04d"]
 [ext_resource type="Texture2D" uid="uid://ceyqqmkpc8a50" path="res://assets/corrupted queencharacter.png" id="2_hohd6"]
@@ -8,6 +8,10 @@
 [ext_resource type="FontFile" uid="uid://4hgqug18ve0r" path="res://assets/AbrilFatface-Regular.ttf" id="5_ptam2"]
 [ext_resource type="Texture2D" uid="uid://d0cjubwnkpy2r" path="res://assets/dashwarning.png" id="7_ptam2"]
 [ext_resource type="Texture2D" uid="uid://pjrofoxv44wf" path="res://assets/projectile.png" id="8_fts25"]
+[ext_resource type="AudioStream" uid="uid://di7ws16plu5nb" path="res://assets/queendash.ogg" id="9_8o7of"]
+[ext_resource type="AudioStream" uid="uid://bj540qo1op8qq" path="res://assets/gitchball.ogg" id="10_2gdsv"]
+[ext_resource type="Texture2D" uid="uid://d2o1t02lqss45" path="res://assets/splash text queen1.png" id="11_i4f4v"]
+[ext_resource type="Texture2D" uid="uid://bgw7y7nljf1rb" path="res://assets/splash text queen2.png" id="12_qxsbf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbncm"]
 radius = 39.0
@@ -836,9 +840,9 @@ _data = {
 &"slip_left": SubResource("Animation_b4wbs")
 }
 
-[sub_resource type="Animation" id="Animation_13ta2"]
-resource_name = "blade"
-length = 0.4
+[sub_resource type="Animation" id="Animation_ulbuw"]
+resource_name = "spawn"
+length = 4.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -846,10 +850,151 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(0.6597538, 2.1435468, 1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.15931998, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -107.71), Vector2(0, 0)]
+"values": [Vector2(0, -2000), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/TitleScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Title/TitleScreen2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overlay/CanvasLayer/HealthBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.4666667, 4.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1000.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overlay/CanvasLayer/HealthBarSmooth:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.4666667, 3.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Overlay/CanvasLayer/Queenlabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.4666667, 3.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ep4uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title/TitleScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Title/TitleScreen2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overlay/CanvasLayer/HealthBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overlay/CanvasLayer/HealthBarSmooth:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Overlay/CanvasLayer/Queenlabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_afrq1"]
+_data = {
+&"RESET": SubResource("Animation_ep4uj"),
+&"spawn": SubResource("Animation_ulbuw")
 }
 
 [sub_resource type="Animation" id="Animation_sy3o3"]
@@ -877,6 +1022,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_13ta2"]
+resource_name = "blade"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0.6597538, 2.1435468, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -107.71), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_14e2j"]
@@ -922,7 +1083,6 @@ height = 130.0
 font = ExtResource("5_ptam2")
 font_size = 31
 shadow_size = 21
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_8o7of"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5232559, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -988,6 +1148,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_2gdsv")
 }
 
+[node name="SpawnAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_afrq1")
+}
+
 [node name="HomingBladeAttack" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_14e2j")
@@ -999,6 +1164,7 @@ libraries = {
 shape = SubResource("CapsuleShape2D_r47x2")
 
 [node name="Overlay" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1070,7 +1236,6 @@ texture = ExtResource("7_ptam2")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
-autostart = true
 
 [node name="DotParticle" type="CPUParticles2D" parent="."]
 position = Vector2(0, -86)
@@ -1085,6 +1250,29 @@ scale_amount_min = 0.01
 scale_amount_max = 0.05
 scale_amount_curve = SubResource("Curve_8o7of")
 color = Color(1, 1, 1, 0.6)
+
+[node name="DashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8o7of")
+
+[node name="ProjectileSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2gdsv")
+
+[node name="Title" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="TitleScreen" type="Sprite2D" parent="Title"]
+visible = false
+z_index = -10
+z_as_relative = false
+position = Vector2(965, 544)
+texture = ExtResource("11_i4f4v")
+
+[node name="TitleScreen2" type="Sprite2D" parent="Title"]
+visible = false
+z_index = -10
+z_as_relative = false
+position = Vector2(965, 544)
+texture = ExtResource("12_qxsbf")
 
 [connection signal="timeout" from="UpdatePositionTimer" to="." method="_on_update_position_timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

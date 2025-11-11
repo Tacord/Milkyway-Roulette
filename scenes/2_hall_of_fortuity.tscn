@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqobo4w7e1hdd"]
+[gd_scene load_steps=15 format=3 uid="uid://dqobo4w7e1hdd"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_exm2p"]
 [ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="2_3ukjp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://5qo3xemxp5ye" path="res://scenes/enemy_rook.tscn" id="10_2ah68"]
 [ext_resource type="PackedScene" uid="uid://c6tio6lak3ucb" path="res://scenes/ambush_attack.tscn" id="11_ypaye"]
 [ext_resource type="PackedScene" uid="uid://i4svkav6qiow" path="res://scenes/elevator.tscn" id="12_bxp0b"]
+[ext_resource type="PackedScene" uid="uid://dfk2x5m8vv1mr" path="res://scenes/medkit.tscn" id="14_dit58"]
 
 [node name="2 Hall of Fortuity" type="Node2D"]
 
@@ -287,3 +288,6 @@ offset = -300.0
 z_index = -1
 position = Vector2(10533, -50)
 scale = Vector2(0.5, 0.5)
+
+[node name="Medkit" parent="." instance=ExtResource("14_dit58")]
+position = Vector2(5103, 41)

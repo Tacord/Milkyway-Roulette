@@ -1,14 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwcqylrgi1p60"]
+[gd_scene load_steps=13 format=3 uid="uid://bwcqylrgi1p60"]
 
 [ext_resource type="PackedScene" uid="uid://brlumw76qtq4q" path="res://scenes/player.tscn" id="1_q37j0"]
+[ext_resource type="Script" uid="uid://cpptypt4hgt3" path="res://scripts/arcade.gd" id="1_s2r73"]
 [ext_resource type="Texture2D" uid="uid://cfi6qg7lr0e8h" path="res://assets/background temp.png" id="2_b4ta2"]
+[ext_resource type="PackedScene" uid="uid://dn1ka6cgfatjc" path="res://scenes/enemy_pawn.tscn" id="2_xxmnv"]
 [ext_resource type="PackedScene" uid="uid://cxsrcke60ijsh" path="res://scenes/trail.tscn" id="3_d0juf"]
+[ext_resource type="PackedScene" uid="uid://dxwqm52ub5u0x" path="res://scenes/enemy_bishop.tscn" id="3_h7ni3"]
+[ext_resource type="PackedScene" uid="uid://cnnfkh0rtsgcs" path="res://scenes/enemy_knight.tscn" id="4_ncb3h"]
 [ext_resource type="PackedScene" uid="uid://c41qlmctf1rr6" path="res://scenes/pentagon.tscn" id="4_s2r73"]
 [ext_resource type="PackedScene" uid="uid://bb6a1fio8xx2f" path="res://scenes/surface.tscn" id="5_70pur"]
+[ext_resource type="PackedScene" uid="uid://5qo3xemxp5ye" path="res://scenes/enemy_rook.tscn" id="5_fkpit"]
 [ext_resource type="PackedScene" uid="uid://c8vxppoo8mmro" path="res://scenes/enemy_queen.tscn" id="6_b4ta2"]
 [ext_resource type="PackedScene" uid="uid://dfk2x5m8vv1mr" path="res://scenes/medkit.tscn" id="7_d0juf"]
 
 [node name="0 Arcade" type="Node2D"]
+script = ExtResource("1_s2r73")
+Pawn = ExtResource("2_xxmnv")
+Bishop = ExtResource("3_h7ni3")
+Knight = ExtResource("4_ncb3h")
+Rook = ExtResource("5_fkpit")
+Queen = ExtResource("6_b4ta2")
 
 [node name="Player" parent="." instance=ExtResource("1_q37j0")]
 z_index = 1
@@ -88,9 +99,6 @@ offset_top = -1006.0
 offset_right = 1484.0
 offset_bottom = 525.0
 color = Color(0, 0, 0, 1)
-
-[node name="EnemyQueen" parent="." instance=ExtResource("6_b4ta2")]
-position = Vector2(-471, -71)
 
 [node name="Medkit" parent="." instance=ExtResource("7_d0juf")]
 position = Vector2(557, 41)

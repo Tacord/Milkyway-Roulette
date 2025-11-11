@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfk2x5m8vv1mr"]
+[gd_scene load_steps=10 format=3 uid="uid://dfk2x5m8vv1mr"]
 
 [ext_resource type="Script" uid="uid://cl4xqhpiowt0o" path="res://medkit.gd" id="1_vvkl3"]
 [ext_resource type="Texture2D" uid="uid://57bxh7yapqn6" path="res://assets/medkit.png" id="2_g3m1j"]
 [ext_resource type="Texture2D" uid="uid://d007moo26h8ik" path="res://assets/+.png" id="3_g3m1j"]
+[ext_resource type="AudioStream" uid="uid://b21v66ofip5j1" path="res://assets/heal.ogg" id="4_gq6dk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gq6dk"]
 size = Vector2(969, 696)
@@ -101,5 +102,8 @@ initial_velocity_max = 3000.0
 scale_amount_min = 0.02
 scale_amount_max = 0.05
 color_ramp = SubResource("Gradient_gq6dk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gq6dk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

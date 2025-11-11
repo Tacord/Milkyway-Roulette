@@ -57,6 +57,8 @@ func damage(damage: float, knockback : float):
 	$HealthBar.value = health
 	$HealthBar.show()
 	if health <= 0:
+		scorecount.kills += 1
+		scorecount.score += 50
 		$DeathAnimation.play("death")
 		await $DeathAnimation.animation_finished
 		queue_free()

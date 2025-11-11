@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2jgkq5h8wrpp"]
+[gd_scene load_steps=14 format=3 uid="uid://d2jgkq5h8wrpp"]
 
 [ext_resource type="Script" uid="uid://epiu6hyr684w" path="res://scenes/queen_projectile.gd" id="1_a0ttm"]
 [ext_resource type="Texture2D" uid="uid://b786ars57iquy" path="res://assets/projectilehard.png" id="2_a0ttm"]
+[ext_resource type="AudioStream" uid="uid://qoqgaktidvgi" path="res://assets/beep.ogg" id="3_jjitm"]
 
 [sub_resource type="Curve" id="Curve_a0ttm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5232559, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -149,6 +150,7 @@ script = ExtResource("1_a0ttm")
 position = Vector2(0, -85.99999)
 scale = Vector2(0.99999994, 0.99999994)
 amount = 20
+texture = ExtResource("2_a0ttm")
 lifetime = 0.4
 spread = 180.0
 gravity = Vector2(0, 0)
@@ -156,7 +158,8 @@ initial_velocity_min = 10.0
 initial_velocity_max = 1000.0
 angular_velocity_min = -89.07
 angular_velocity_max = 74.23
-scale_amount_max = 10.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02
 scale_amount_curve = SubResource("Curve_a0ttm")
 color = Color(1, 0.42352942, 0.42352942, 0.7019608)
 color_ramp = SubResource("Gradient_a0ttm")
@@ -181,6 +184,9 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_d7g4m")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jjitm")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ExpireTimer" to="." method="_on_expire_timer_timeout"]
